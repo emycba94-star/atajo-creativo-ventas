@@ -225,20 +225,79 @@ async function callAPI(prompt){
 async function generate(){
   saveData();
   document.getElementById('formulario').style.display='none';
-  document.getElementById('loading-sec').style.display='block';
+  document.getElementById('loading-sec').style.display='flex';
   window.scrollTo({top:0,behavior:'smooth'});
-  let li=0;ldTimer=setInterval(()=>{if(li<LOAD_MSGS.length){document.getElementById('ld-t').textContent=LOAD_MSGS[li][0];document.getElementById('ld-s').textContent=LOAD_MSGS[li][1];li++;}},3000);
-  try{
-    const text=await callAPI(buildPrompt());clearInterval(ldTimer);
-    const parts=text.split(/MÓDULO\s+\d+\s*[—–\-]/i).filter(p=>p.trim());
-    modules=[...parts];renderModules();
+  
+  const wrap=document.getElementById('modules-wrap');
+  wrap.innerHTML='';
+  document.getElementById('result-sec').classList.remove('vis');
+  
+  const base=buildPrompt();
+  const total=MODULE_TITLES.length;
+  let completed=0;
+  
+  // Loading messages rotation
+  const ldMsgs=['Generando módulo '+(completed+1)+' de '+total+'...'];
+  let ldTimer=setInterval(()=>{
+    const msg='Generando módulo '+(completed+1)+' de '+total+'...';
+    document.getElementById('ld-t').textContent=msg;
+  },1000);
+  document.getElementById('ld-t').textContent='Generando módulo 1 de '+total+'...';
+  document.getElementById('ld-s').textContent='Esto puede tardar hasta 2 minutos';
+  
+  const results=new Array(total).fill('');
+  
+  // Generate modules sequentially to avoid overwhelming the API
+  for(let i=0;i<total;i++){
+    try{
+      document.getElementById('ld-t').textContent='Generando módulo '+(i+1)+' de '+total+': '+MODULE_TITLES[i]+'...';
+      
+      const modulePrompt=base+'\n\nGenera ÚNICAMENTE el módulo '+(i+1)+': '+MODULE_TITLES[i]+'. No incluyas otros módulos. Formato claro con ejemplos prácticos listos para usar. Máximo 300 palabras.';
+      
+      const text=await callAPI(modulePrompt);
+      results[i]=text;
+      completed++;
+      
+      // Render this module immediately (progressive)
+      const d=document.createElement('div');
+      d.className='rc-card';
+      d.id='rc'+i;
+      d.innerHTML='<div class="rc-h" onclick="toggleRC('+i+')"><div class="rc-num">0'+(i+1)+'</div><div class="rc-title">'+MODULE_TITLES[i]+'</div><div class="rc-arr">▾</div></div><div class="rc-body"><div class="rc-text" id="rct'+i+'">'+results[i].trim()+'</div><div class="rc-actions"><button class="rc-btn" id="cb'+i+'" onclick="copyMod('+i+')">📋 Copiar</button><button class="rc-btn" id="rb'+i+'" onclick="regenMod('+i+')">🔄 Versión diferente</button></div></div>';
+      wrap.appendChild(d);
+      
+      // Show results section as soon as first module is ready
+      if(i===0){
+        clearInterval(ldTimer);
+        document.getElementById('loading-sec').style.display='none';
+        document.getElementById('result-sec').classList.add('vis');
+        document.getElementById('rc0').classList.add('open');
+        window.scrollTo({top:0,behavior:'smooth'});
+        // Restart timer for next modules (shown in a progress indicator)
+        ldTimer=null;
+      }
+      
+    }catch(e){
+      results[i]='Error al generar este módulo: '+e.message;
+      const d=document.createElement('div');
+      d.className='rc-card';
+      d.id='rc'+i;
+      d.innerHTML='<div class="rc-h" onclick="toggleRC('+i+')"><div class="rc-num">0'+(i+1)+'</div><div class="rc-title">'+MODULE_TITLES[i]+'</div><div class="rc-arr">▾</div></div><div class="rc-body"><div class="rc-text" id="rct'+i+'">Error al generar este módulo. <button class="rc-btn" onclick="regenMod('+i+')">🔄 Intentar de nuevo</button></div></div>';
+      wrap.appendChild(d);
+      if(i===0){
+        clearInterval(ldTimer);
+        document.getElementById('loading-sec').style.display='none';
+        document.getElementById('result-sec').classList.add('vis');
+        ldTimer=null;
+      }
+    }
+  }
+  
+  if(ldTimer) clearInterval(ldTimer);
+  if(document.getElementById('loading-sec').style.display!=='none'){
     document.getElementById('loading-sec').style.display='none';
     document.getElementById('result-sec').classList.add('vis');
+    document.getElementById('rc0')?.classList.add('open');
     window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){
-    clearInterval(ldTimer);
-    document.getElementById('ld-t').textContent='Error: '+e.message;
-    document.getElementById('ld-s').textContent='Revisá tu conexión e intentá de nuevo';
   }
 }
 function renderModules(){
