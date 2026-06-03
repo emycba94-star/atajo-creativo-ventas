@@ -5,159 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sistema de Ventas por WhatsApp — Atajo Creativo</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--bg:#0a0a0a;--card:#111;--border:#222;--green:#c6f135;--white:#fff;--gray:#888;--light:#ccc}
-  body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
-  a{color:inherit;text-decoration:none}
-  
-  /* HERO */
-  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;max-width:1200px;margin:0 auto;padding:60px 40px;gap:80px;align-items:center}
-  .hero-left{}
-  .hero-tag{color:var(--green);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
-  .hero-brand{font-size:13px;font-weight:600;color:var(--gray);margin-bottom:40px;letter-spacing:2px;text-transform:uppercase}
-  .hero-title{font-size:clamp(42px,5vw,64px);font-weight:900;line-height:1;text-transform:uppercase;margin-bottom:24px}
-  .hero-title span{color:var(--green)}
-  .hero-desc{color:var(--light);font-size:17px;margin-bottom:40px;max-width:460px}
-  .btn-main{background:var(--green);color:#000;font-weight:800;font-size:15px;letter-spacing:1px;padding:18px 40px;border:none;cursor:pointer;text-transform:uppercase;display:inline-block;transition:all .2s}
-  .btn-main:hover{background:#d4ff44;transform:translateY(-1px)}
-  .badges{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
-  .badge{border:1px solid var(--border);padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray)}
-  .badge.active{border-color:var(--green);color:var(--green)}
-  
-  /* MODULE LIST */
-  .hero-right{}
-  .module-list-title{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-bottom:28px}
-  .module-item{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid var(--border)}
-  .module-item:last-child{border-bottom:none}
-  .module-num{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1px;min-width:24px;padding-top:2px}
-  .module-name{font-size:14px;font-weight:700;margin-bottom:2px}
-  .module-desc{font-size:12px;color:var(--gray)}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--card:#111;--border:#222;--green:#c6f135;--white:#fff;--gray:#888;--light:#ccc}
+body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-serif;line-height:1.6}
 
-  /* FORM */
-  .form-section{max-width:760px;margin:0 auto;padding:80px 40px}
-  .form-header{margin-bottom:48px}
-  .form-header h2{font-size:32px;font-weight:900;text-transform:uppercase;margin-bottom:8px}
-  .form-header h2 span{color:var(--green)}
-  .form-header p{color:var(--gray);font-size:15px}
-  
-  .step{display:none}
-  .step.active{display:block}
-  .step-label{font-size:11px;color:var(--green);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-  .step-title{font-size:22px;font-weight:800;margin-bottom:6px;text-transform:uppercase}
-  .step-desc{color:var(--gray);font-size:14px;margin-bottom:28px}
-  
-  .progress-bar{height:3px;background:var(--border);margin-bottom:48px;border-radius:2px}
-  .progress-fill{height:100%;background:var(--green);border-radius:2px;transition:width .4s ease}
-  
-  /* OPTION CARDS */
-  .options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px}
-  .opt-card{border:2px solid var(--border);padding:20px 16px;cursor:pointer;text-align:center;transition:all .2s;user-select:none}
-  .opt-card:hover{border-color:#444}
-  .opt-card.selected{border-color:var(--green);background:rgba(198,241,53,.06)}
-  .opt-icon{font-size:24px;margin-bottom:8px}
-  .opt-label{font-size:13px;font-weight:700}
-  .opt-sub{font-size:11px;color:var(--gray);margin-top:2px}
-  
-  /* SELECT / TEXT */
-  .form-select{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;margin-bottom:16px;outline:none;appearance:none;cursor:pointer}
-  .form-select:focus{border-color:var(--green)}
-  .form-textarea{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;resize:vertical;min-height:120px;outline:none;font-family:inherit;margin-bottom:16px}
-  .form-textarea:focus{border-color:var(--green)}
-  .form-textarea::placeholder{color:var(--gray)}
-  .form-input{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;outline:none;font-family:inherit;margin-bottom:16px}
-  .form-input:focus{border-color:var(--green)}
-  .form-input::placeholder{color:var(--gray)}
-  
-  .checkbox-group{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-  .checkbox-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border:2px solid var(--border);cursor:pointer;transition:all .2s}
-  .checkbox-item:hover{border-color:#444}
-  .checkbox-item.selected{border-color:var(--green);background:rgba(198,241,53,.04)}
-  .checkbox-item input{display:none}
-  .checkbox-dot{width:18px;height:18px;border:2px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
-  .checkbox-item.selected .checkbox-dot{background:var(--green);border-color:var(--green)}
-  .checkbox-dot::after{content:'✓';font-size:11px;color:#000;display:none}
-  .checkbox-item.selected .checkbox-dot::after{display:block}
-  .checkbox-text{font-size:14px;font-weight:600}
-  
-  .field-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:10px;display:block}
-  
-  .nav-buttons{display:flex;gap:12px;margin-top:8px}
-  .btn-next{background:var(--green);color:#000;font-weight:800;font-size:14px;letter-spacing:1px;padding:16px 36px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;flex:1}
-  .btn-next:hover{background:#d4ff44}
-  .btn-back{background:transparent;color:var(--gray);font-weight:700;font-size:14px;padding:16px 24px;border:2px solid var(--border);cursor:pointer;text-transform:uppercase;transition:all .2s}
-  .btn-back:hover{border-color:#555;color:var(--white)}
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;max-width:1200px;margin:0 auto;padding:60px 40px;gap:80px;align-items:center}
+.hero-tag{color:var(--green);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.hero-brand{font-size:13px;font-weight:600;color:var(--gray);margin-bottom:40px;letter-spacing:2px;text-transform:uppercase}
+.hero-title{font-size:clamp(38px,5vw,64px);font-weight:900;line-height:1;text-transform:uppercase;margin-bottom:24px}
+.hero-title span{color:var(--green)}
+.hero-desc{color:var(--light);font-size:17px;margin-bottom:40px;max-width:460px}
+.btn-main{background:var(--green);color:#000;font-weight:800;font-size:15px;letter-spacing:1px;padding:18px 40px;border:none;cursor:pointer;text-transform:uppercase;display:inline-block;transition:all .2s}
+.btn-main:hover{background:#d4ff44;transform:translateY(-1px)}
+.badges{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.badge{border:1px solid var(--border);padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray)}
+.badge.active{border-color:var(--green);color:var(--green)}
+.module-list-title{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-bottom:20px}
+.module-item{display:flex;align-items:flex-start;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)}
+.module-item:last-child{border-bottom:none}
+.module-num{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1px;min-width:24px;padding-top:2px}
+.module-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.module-desc{font-size:12px;color:var(--gray)}
 
-  /* RESULTS */
-  .results-section{max-width:900px;margin:0 auto;padding:60px 40px;display:none}
-  .results-header{text-align:center;margin-bottom:48px}
-  .results-header h2{font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:12px}
-  .results-header h2 span{color:var(--green)}
-  .results-header p{color:var(--gray);font-size:16px}
-  
-  .gen-progress{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:40px}
-  .gen-progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-  .gen-status-text{font-size:13px;font-weight:700;color:var(--green)}
-  .gen-count{font-size:13px;color:var(--gray)}
-  .gen-bar{height:4px;background:var(--border);border-radius:2px}
-  .gen-bar-fill{height:100%;background:var(--green);border-radius:2px;transition:width .5s ease;width:0%}
-  
-  .modules-grid{display:grid;gap:20px}
-  .module-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:border-color .3s}
-  .module-card.loading{border-color:#333}
-  .module-card.done{border-color:var(--border)}
-  .module-card-header{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;user-select:none}
-  .module-card-header:hover{background:rgba(255,255,255,.02)}
-  .mc-num{color:var(--green);font-size:13px;font-weight:800;letter-spacing:1px;min-width:28px}
-  .mc-title{flex:1}
-  .mc-title-main{font-size:15px;font-weight:800;text-transform:uppercase;margin-bottom:2px}
-  .mc-title-sub{font-size:12px;color:var(--gray)}
-  .mc-status{font-size:12px;font-weight:700;padding:4px 10px}
-  .mc-status.pending{color:var(--gray);border:1px solid var(--border)}
-  .mc-status.generating{color:#ffd700;border:1px solid #ffd70044;animation:pulse 1s infinite}
-  .mc-status.done{color:#0f0;border:1px solid #0f044}
-  .mc-status.error{color:#ff4444;border:1px solid #ff444444}
-  .mc-arrow{color:var(--gray);font-size:16px;transition:transform .2s;margin-left:8px}
-  .module-card.open .mc-arrow{transform:rotate(180deg)}
-  
-  .module-content{display:none;padding:0 24px 24px;border-top:1px solid var(--border)}
-  .module-card.open .module-content{display:block}
-  .module-content-inner{padding-top:20px;white-space:pre-wrap;font-size:14px;line-height:1.75;color:var(--light)}
-  .module-content-inner.loading-text{color:var(--gray);font-style:italic}
-  
-  .typing-cursor{display:inline-block;width:2px;height:14px;background:var(--green);animation:blink .7s infinite;vertical-align:middle;margin-left:2px}
-  
-  .copy-btn{margin-top:16px;background:transparent;border:1px solid var(--border);color:var(--gray);font-size:12px;font-weight:700;padding:8px 16px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
-  .copy-btn:hover{border-color:var(--green);color:var(--green)}
-  
-  .results-actions{display:flex;gap:12px;margin-top:40px;justify-content:center}
-  .btn-new{background:transparent;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:14px;padding:16px 32px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
-  .btn-new:hover{background:var(--green);color:#000}
-  
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-  .fade-in{animation:fadeIn .4s ease forwards}
-  
-  .error-msg{color:#ff6b6b;font-size:13px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);padding:12px 16px;margin-top:8px;display:none}
-  .error-msg.show{display:block}
-  .retry-btn{background:#ff6b6b;color:#fff;border:none;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;margin-top:10px;text-transform:uppercase}
-  
-  @media(max-width:768px){
-    .hero{grid-template-columns:1fr;padding:40px 24px;gap:48px;min-height:auto}
-    .form-section{padding:60px 24px}
-    .results-section{padding:40px 20px}
-    .options-grid{grid-template-columns:1fr 1fr}
-  }
+/* FORM */
+.form-section{max-width:760px;margin:0 auto;padding:80px 40px}
+.progress-bar{height:3px;background:var(--border);margin-bottom:48px;border-radius:2px}
+.progress-fill{height:100%;background:var(--green);border-radius:2px;transition:width .4s ease}
+.step{display:none}.step.active{display:block}
+.step-label{font-size:11px;color:var(--green);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.step-title{font-size:22px;font-weight:800;margin-bottom:6px;text-transform:uppercase}
+.step-desc{color:var(--gray);font-size:14px;margin-bottom:28px}
+.options-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
+.opt-card{border:2px solid var(--border);padding:20px 16px;cursor:pointer;text-align:center;transition:all .2s;user-select:none}
+.opt-card:hover{border-color:#444}.opt-card.selected{border-color:var(--green);background:rgba(198,241,53,.06)}
+.opt-icon{font-size:24px;margin-bottom:8px}.opt-label{font-size:13px;font-weight:700}.opt-sub{font-size:11px;color:var(--gray);margin-top:2px}
+.form-select{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;margin-bottom:16px;outline:none;appearance:none;cursor:pointer}
+.form-select:focus{border-color:var(--green)}
+.form-textarea{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;resize:vertical;min-height:120px;outline:none;font-family:inherit;margin-bottom:16px}
+.form-textarea:focus{border-color:var(--green)}.form-textarea::placeholder{color:var(--gray)}
+.form-input{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:14px 16px;font-size:14px;outline:none;font-family:inherit;margin-bottom:16px}
+.form-input:focus{border-color:var(--green)}.form-input::placeholder{color:var(--gray)}
+.checkbox-group{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.checkbox-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border:2px solid var(--border);cursor:pointer;transition:all .2s;user-select:none}
+.checkbox-item:hover{border-color:#444}.checkbox-item.selected{border-color:var(--green);background:rgba(198,241,53,.04)}
+.checkbox-dot{width:18px;height:18px;border:2px solid var(--border);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;font-size:11px;color:transparent}
+.checkbox-item.selected .checkbox-dot{background:var(--green);border-color:var(--green);color:#000}
+.checkbox-text{font-size:14px;font-weight:600}
+.field-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:10px;display:block}
+.nav-buttons{display:flex;gap:12px;margin-top:8px}
+.btn-next{background:var(--green);color:#000;font-weight:800;font-size:14px;letter-spacing:1px;padding:16px 36px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;flex:1}
+.btn-next:hover{background:#d4ff44}.btn-next:disabled{opacity:.5;cursor:not-allowed}
+.btn-back{background:transparent;color:var(--gray);font-weight:700;font-size:14px;padding:16px 24px;border:2px solid var(--border);cursor:pointer;text-transform:uppercase;transition:all .2s}
+.btn-back:hover{border-color:#555;color:var(--white)}
+.error-msg{color:#ff6b6b;font-size:13px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);padding:12px 16px;margin-top:8px;display:none}
+.error-msg.show{display:block}
+
+/* RESULTS */
+.results-section{max-width:900px;margin:0 auto;padding:60px 40px;display:none}
+.results-header{text-align:center;margin-bottom:40px}
+.results-header h2{font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:12px}
+.results-header h2 span{color:var(--green)}
+.results-header p{color:var(--gray);font-size:16px}
+.gen-progress{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:32px}
+.gen-progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.gen-status-text{font-size:13px;font-weight:700;color:var(--green)}
+.gen-count{font-size:13px;color:var(--gray)}
+.gen-bar{height:4px;background:var(--border);border-radius:2px}
+.gen-bar-fill{height:100%;background:var(--green);border-radius:2px;transition:width .5s ease;width:0%}
+.modules-grid{display:grid;gap:16px}
+.module-card{background:var(--card);border:1px solid var(--border);overflow:hidden}
+.module-card-header{display:flex;align-items:center;gap:16px;padding:18px 24px;cursor:pointer;user-select:none;transition:background .15s}
+.module-card-header:hover{background:rgba(255,255,255,.02)}
+.mc-num{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1px;min-width:28px}
+.mc-title{flex:1}
+.mc-title-main{font-size:14px;font-weight:800;text-transform:uppercase;margin-bottom:2px}
+.mc-title-sub{font-size:12px;color:var(--gray)}
+.mc-status{font-size:11px;font-weight:700;padding:4px 10px;white-space:nowrap}
+.mc-status.pending{color:var(--gray);border:1px solid var(--border)}
+.mc-status.generating{color:#ffd700;border:1px solid rgba(255,215,0,.3);animation:pulse 1s infinite}
+.mc-status.done{color:#4ade80;border:1px solid rgba(74,222,128,.3)}
+.mc-status.error{color:#f87171;border:1px solid rgba(248,113,113,.3)}
+.mc-arrow{color:var(--gray);font-size:12px;transition:transform .25s;margin-left:8px;display:inline-block}
+.module-card.open .mc-arrow{transform:rotate(180deg)}
+.module-content{display:none;padding:0 24px 24px;border-top:1px solid var(--border)}
+.module-card.open .module-content{display:block}
+.module-content-inner{padding-top:20px;font-size:14px;line-height:1.8;color:var(--light)}
+.module-content-inner.loading-text{color:var(--gray);font-style:italic}
+/* Markdown rendering */
+.module-content-inner h1,.module-content-inner h2,.module-content-inner h3{color:var(--green);font-size:14px;font-weight:800;text-transform:uppercase;margin:16px 0 8px;letter-spacing:1px}
+.module-content-inner strong{color:var(--white);font-weight:700}
+.module-content-inner em{color:var(--light);font-style:italic}
+.module-content-inner ul,.module-content-inner ol{padding-left:20px;margin:8px 0}
+.module-content-inner li{margin:4px 0}
+.module-content-inner p{margin:8px 0}
+.module-content-inner hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.module-content-inner blockquote{border-left:3px solid var(--green);padding:8px 16px;background:rgba(198,241,53,.04);margin:12px 0;color:var(--light)}
+.module-content-inner code{background:#1a1a1a;padding:2px 6px;font-family:monospace;font-size:13px;color:var(--green)}
+.typing-cursor{display:inline-block;width:2px;height:14px;background:var(--green);animation:blink .7s infinite;vertical-align:middle;margin-left:2px}
+.module-actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.copy-btn{background:transparent;border:1px solid var(--border);color:var(--gray);font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
+.copy-btn:hover{border-color:var(--green);color:var(--green)}
+.results-actions{display:flex;gap:12px;margin-top:40px;justify-content:center;flex-wrap:wrap}
+.btn-secondary{background:transparent;border:2px solid var(--border);color:var(--gray);font-weight:700;font-size:13px;padding:14px 24px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
+.btn-secondary:hover{border-color:#555;color:var(--white)}
+.btn-outline-green{background:transparent;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
+.btn-outline-green:hover{background:var(--green);color:#000}
+.download-all-btn{background:var(--green);color:#000;font-weight:800;font-size:13px;padding:14px 28px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
+.download-all-btn:hover{background:#d4ff44}
+.copy-all-btn{background:transparent;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
+.copy-all-btn:hover{background:var(--green);color:#000}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:40px 24px;min-height:auto;gap:40px}
+  .form-section{padding:40px 20px}
+  .results-section{padding:40px 20px}
+  .options-grid{grid-template-columns:1fr 1fr}
+  .results-actions{flex-direction:column;align-items:stretch}
+  .results-actions button{text-align:center}
+}
 </style>
 </head>
 <body>
-<!-- HERO SECTION -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-left">
     <div class="hero-tag">Recurso exclusivo para clientes</div>
     <div class="hero-brand">Atajo Creativo</div>
     <h1 class="hero-title">Tu sistema<br>de ventas<br><span>por WhatsApp</span></h1>
-    <p class="hero-desc">Completá la info de tu negocio y en menos de 2 minutos tenés un sistema de ventas completo, personalizado y listo para usar por WhatsApp.</p>
+    <p class="hero-desc">Completá la info de tu negocio y en menos de 2 minutos tenés un sistema de ventas completo, personalizado y listo para usar.</p>
     <button class="btn-main" onclick="startForm()">EMPEZAR AHORA →</button>
     <div class="badges">
       <div class="badge active">10 módulos</div>
@@ -176,56 +153,51 @@
     <div class="module-item"><span class="module-num">07</span><div><div class="module-name">Aceleradores de cierre</div><div class="module-desc">Urgencia, valor extra y escasez real</div></div></div>
     <div class="module-item"><span class="module-num">08</span><div><div class="module-name">Manual de objeciones</div><div class="module-desc">Respuestas listas para las más frecuentes</div></div></div>
     <div class="module-item"><span class="module-num">09</span><div><div class="module-name">Cierre de transición</div><div class="module-desc">Para mover la conversación a la decisión</div></div></div>
-    <div class="module-item"><span class="module-num">10</span><div><div class="module-name">Guión de llamada</div><div class="module-desc">Script para la llamada de seguimiento</div></div></div>
+    <div class="module-item"><span class="module-num">10</span><div><div class="module-name">Guión de llamada</div><div class="module-desc">Script completo para llamada de seguimiento</div></div></div>
   </div>
 </section>
 
-<!-- FORM SECTION -->
+<!-- FORM -->
 <section class="form-section" id="formSection" style="display:none">
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
-  
+
   <!-- STEP 1 -->
   <div class="step active" id="step1">
     <div class="step-label">Paso 1 de 5</div>
     <div class="step-title">Diagnóstico <span style="color:var(--green)">inicial</span></div>
     <div class="step-desc">Adapta los mensajes a tu realidad operativa.</div>
-    
     <label class="field-label">¿Quién responde las consultas?</label>
-    <div class="options-grid" id="whoOpts">
+    <div class="options-grid">
       <div class="opt-card" onclick="selectOpt('who','solo',this)"><div class="opt-icon">👤</div><div class="opt-label">Yo solo</div><div class="opt-sub">Dueño y atiende todo</div></div>
       <div class="opt-card" onclick="selectOpt('who','team',this)"><div class="opt-icon">👥</div><div class="opt-label">Tengo equipo</div><div class="opt-sub">Alguien me ayuda</div></div>
       <div class="opt-card" onclick="selectOpt('who','both',this)"><div class="opt-icon">🔄</div><div class="opt-label">Depende</div><div class="opt-sub">A veces yo, a veces otro</div></div>
     </div>
-    
     <label class="field-label">¿Cuánto tardás en responder?</label>
     <select class="form-select" id="responseTime">
       <option value="">Seleccioná...</option>
-      <option value="menos1h">Menos de 1 hora</option>
-      <option value="1a3h">1 a 3 horas</option>
-      <option value="mas3h">Más de 3 horas</option>
-      <option value="aldía">Al día siguiente</option>
+      <option value="menos de 1 hora">Menos de 1 hora</option>
+      <option value="1 a 3 horas">1 a 3 horas</option>
+      <option value="más de 3 horas">Más de 3 horas</option>
+      <option value="al día siguiente">Al día siguiente</option>
     </select>
-    
     <label class="field-label">¿Consultas por semana?</label>
     <select class="form-select" id="weeklyLeads">
       <option value="">Seleccioná...</option>
-      <option value="menos5">Menos de 5</option>
-      <option value="5a15">5 a 15</option>
-      <option value="15a30">15 a 30</option>
-      <option value="mas30">Más de 30</option>
+      <option value="menos de 5">Menos de 5</option>
+      <option value="5 a 15">5 a 15</option>
+      <option value="15 a 30">15 a 30</option>
+      <option value="más de 30">Más de 30</option>
     </select>
-    
-    <label class="field-label">¿Tu mayor problema con consultas?</label>
+    <label class="field-label">¿Tu mayor problema con consultas? (opcional)</label>
     <div class="checkbox-group" id="mainProblems">
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Llegan pocas consultas</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Respondo tarde</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">No hago seguimiento</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">No cierro ventas</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Consultas de baja calidad</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">No sé qué funciona</span></label>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Llegan pocas consultas</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Respondo tarde</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">No hago seguimiento</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">No cierro ventas</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Consultas de baja calidad</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">No sé qué funciona</span></div>
     </div>
-    
-    <div class="error-msg" id="err1">Completá todos los campos para continuar.</div>
+    <div class="error-msg" id="err1">Seleccioná quién atiende y los tiempos de respuesta para continuar.</div>
     <div class="nav-buttons"><button class="btn-next" onclick="nextStep(1)">SIGUIENTE →</button></div>
   </div>
 
@@ -233,18 +205,14 @@
   <div class="step" id="step2">
     <div class="step-label">Paso 2 de 5</div>
     <div class="step-title">Tu <span style="color:var(--green)">negocio</span></div>
-    <div class="step-desc">Contanos qué vendés y a quién. Sé específico, la IA lo usa para personalizar cada mensaje.</div>
-    
+    <div class="step-desc">Contanos qué vendés y a quién. Cuanto más detallado, mejor el sistema.</div>
     <label class="field-label">¿Qué vendés exactamente?</label>
-    <textarea class="form-textarea" id="whatYouSell" placeholder="Ej: Diseño de logos y branding para emprendedores. Trabajo en redes desde hace 3 años, mis paquetes van de $150 a $800 dólares..."></textarea>
-    
+    <textarea class="form-textarea" id="whatYouSell" placeholder="Ej: Diseño de logos y branding para emprendedores. Trabajo en redes desde hace 3 años, mis paquetes van de $150 a $800..."></textarea>
     <label class="field-label">¿A quién le vendés? (tu cliente ideal)</label>
-    <textarea class="form-textarea" id="targetClient" placeholder="Ej: Emprendedores de 25-40 años que están arrancando y necesitan diferenciarse. Muchos me buscan por Instagram, tienen presupuesto ajustado pero valoran la calidad..."></textarea>
-    
+    <textarea class="form-textarea" id="targetClient" placeholder="Ej: Emprendedores de 25-40 años que están arrancando y necesitan diferenciarse visualmente..."></textarea>
     <label class="field-label">¿Cuánto cuesta lo que vendés?</label>
     <input class="form-input" id="priceRange" placeholder="Ej: Desde $150 hasta $800 según el paquete" />
-    
-    <div class="error-msg" id="err2">Completá todos los campos para continuar.</div>
+    <div class="error-msg" id="err2">Completá los tres campos para continuar.</div>
     <div class="nav-buttons">
       <button class="btn-back" onclick="prevStep(2)">← ATRÁS</button>
       <button class="btn-next" onclick="nextStep(2)">SIGUIENTE →</button>
@@ -256,34 +224,30 @@
     <div class="step-label">Paso 3 de 5</div>
     <div class="step-title">Tu proceso de <span style="color:var(--green)">venta</span></div>
     <div class="step-desc">¿Cómo funciona tu proceso hoy?</div>
-    
     <label class="field-label">¿Cómo llegan los clientes a vos?</label>
     <div class="options-grid">
-      <div class="opt-card" onclick="selectOpt('source','instagram',this)"><div class="opt-icon">📱</div><div class="opt-label">Instagram</div></div>
-      <div class="opt-card" onclick="selectOpt('source','referidos',this)"><div class="opt-icon">🤝</div><div class="opt-label">Referidos</div></div>
-      <div class="opt-card" onclick="selectOpt('source','web',this)"><div class="opt-icon">🌐</div><div class="opt-label">Web/Google</div></div>
-      <div class="opt-card" onclick="selectOpt('source','ads',this)"><div class="opt-icon">📢</div><div class="opt-label">Publicidad</div></div>
-      <div class="opt-card" onclick="selectOpt('source','mixto',this)"><div class="opt-icon">🔀</div><div class="opt-label">Mixto</div></div>
+      <div class="opt-card" onclick="selectOpt('source','Instagram',this)"><div class="opt-icon">📱</div><div class="opt-label">Instagram</div></div>
+      <div class="opt-card" onclick="selectOpt('source','Referidos',this)"><div class="opt-icon">🤝</div><div class="opt-label">Referidos</div></div>
+      <div class="opt-card" onclick="selectOpt('source','Web/Google',this)"><div class="opt-icon">🌐</div><div class="opt-label">Web/Google</div></div>
+      <div class="opt-card" onclick="selectOpt('source','Publicidad',this)"><div class="opt-icon">📢</div><div class="opt-label">Publicidad</div></div>
+      <div class="opt-card" onclick="selectOpt('source','Mixto',this)"><div class="opt-icon">🔀</div><div class="opt-label">Mixto</div></div>
     </div>
-    
-    <label class="field-label">¿Cómo cerrás normalmente?</label>
-    <div class="checkbox-group">
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Todo por WhatsApp/chat</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Videollamada o reunión</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Llamada telefónica</span></label>
-      <label class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="checkbox-dot"></div><span class="checkbox-text">Encuentro presencial</span></label>
+    <label class="field-label">¿Cómo cerrás normalmente? (opcional)</label>
+    <div class="checkbox-group" id="closingMethods">
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Todo por WhatsApp/chat</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Videollamada o reunión</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Llamada telefónica</span></div>
+      <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Encuentro presencial</span></div>
     </div>
-    
     <label class="field-label">¿Cuánto demora un cliente en decidir?</label>
     <select class="form-select" id="decisionTime">
       <option value="">Seleccioná...</option>
-      <option value="mismo_dia">El mismo día</option>
-      <option value="dias">Unos días</option>
-      <option value="semanas">Una o dos semanas</option>
-      <option value="mas">Más de dos semanas</option>
+      <option value="el mismo día">El mismo día</option>
+      <option value="unos días">Unos días</option>
+      <option value="una o dos semanas">Una o dos semanas</option>
+      <option value="más de dos semanas">Más de dos semanas</option>
     </select>
-    
-    <div class="error-msg" id="err3">Completá todos los campos para continuar.</div>
+    <div class="error-msg" id="err3">Seleccioná cómo llegan los clientes y el tiempo de decisión.</div>
     <div class="nav-buttons">
       <button class="btn-back" onclick="prevStep(3)">← ATRÁS</button>
       <button class="btn-next" onclick="nextStep(3)">SIGUIENTE →</button>
@@ -295,22 +259,18 @@
     <div class="step-label">Paso 4 de 5</div>
     <div class="step-title">Tu <span style="color:var(--green)">tono</span> y diferencial</div>
     <div class="step-desc">Esto hace que los mensajes suenen a vos, no a una plantilla genérica.</div>
-    
     <label class="field-label">¿Cómo es tu tono al escribir?</label>
     <div class="options-grid">
-      <div class="opt-card" onclick="selectOpt('tone','cercano',this)"><div class="opt-icon">😊</div><div class="opt-label">Cercano</div><div class="opt-sub">Informal y cálido</div></div>
-      <div class="opt-card" onclick="selectOpt('tone','profesional',this)"><div class="opt-icon">💼</div><div class="opt-label">Profesional</div><div class="opt-sub">Formal pero amigable</div></div>
-      <div class="opt-card" onclick="selectOpt('tone','directo',this)"><div class="opt-icon">⚡</div><div class="opt-label">Directo</div><div class="opt-sub">Sin vueltas, al punto</div></div>
-      <div class="opt-card" onclick="selectOpt('tone','experto',this)"><div class="opt-icon">🎓</div><div class="opt-label">Experto</div><div class="opt-sub">Autoridad y técnica</div></div>
+      <div class="opt-card" onclick="selectOpt('tone','cercano e informal',this)"><div class="opt-icon">😊</div><div class="opt-label">Cercano</div><div class="opt-sub">Informal y cálido</div></div>
+      <div class="opt-card" onclick="selectOpt('tone','profesional y amigable',this)"><div class="opt-icon">💼</div><div class="opt-label">Profesional</div><div class="opt-sub">Formal pero amigable</div></div>
+      <div class="opt-card" onclick="selectOpt('tone','directo y al punto',this)"><div class="opt-icon">⚡</div><div class="opt-label">Directo</div><div class="opt-sub">Sin vueltas</div></div>
+      <div class="opt-card" onclick="selectOpt('tone','experto y técnico',this)"><div class="opt-icon">🎓</div><div class="opt-label">Experto</div><div class="opt-sub">Autoridad y técnica</div></div>
     </div>
-    
     <label class="field-label">¿Qué te hace diferente de la competencia?</label>
-    <textarea class="form-textarea" id="diferencial" placeholder="Ej: Entrego en 48hs, doy revisiones ilimitadas, tengo 5 años de experiencia en el rubro, mis clientes me recomiendan mucho..."></textarea>
-    
+    <textarea class="form-textarea" id="diferencial" placeholder="Ej: Entrego en 48hs, doy revisiones ilimitadas, 5 años de experiencia, mis clientes me recomiendan mucho..."></textarea>
     <label class="field-label">¿Cuáles son las 3 objeciones más comunes que escuchás?</label>
-    <textarea class="form-textarea" id="objections" placeholder="Ej: 'Es muy caro', 'Lo tengo que pensar', 'Ya tengo alguien que me hace eso'..."></textarea>
-    
-    <div class="error-msg" id="err4">Completá todos los campos para continuar.</div>
+    <textarea class="form-textarea" id="objections" placeholder="Ej: 'Es muy caro', 'Lo tengo que pensar', 'Ya tengo alguien'..."></textarea>
+    <div class="error-msg" id="err4">Seleccioná tu tono y completá diferencial y objeciones.</div>
     <div class="nav-buttons">
       <button class="btn-back" onclick="prevStep(4)">← ATRÁS</button>
       <button class="btn-next" onclick="nextStep(4)">SIGUIENTE →</button>
@@ -322,27 +282,23 @@
     <div class="step-label">Paso 5 de 5</div>
     <div class="step-title">Contexto <span style="color:var(--green)">extra</span></div>
     <div class="step-desc">Últimos detalles para hacer el sistema todavía más preciso.</div>
-    
     <label class="field-label">¿Qué resultados logran tus clientes con vos?</label>
-    <textarea class="form-textarea" id="results" placeholder="Ej: Mis clientes logran diferenciarse de la competencia, consiguen más clientes y se ven más profesionales. Uno triplicó sus consultas al mes de rediseñar su marca..."></textarea>
-    
-    <label class="field-label">¿Hay algo más que la IA deba saber para personalizar bien los mensajes?</label>
-    <textarea class="form-textarea" id="extra" placeholder="Opcional — zona geográfica, nicho específico, temporadas, cosas que no funcionan con tus clientes, etc." style="min-height:90px"></textarea>
-    
-    <div class="error-msg" id="err5">Completá el campo principal para continuar.</div>
+    <textarea class="form-textarea" id="results" placeholder="Ej: Mis clientes logran diferenciarse, consiguen más clientes y se ven más profesionales. Uno triplicó sus consultas al mes de rediseñar su marca..."></textarea>
+    <label class="field-label">¿Algo más que la IA deba saber? (opcional)</label>
+    <textarea class="form-textarea" id="extra" placeholder="Zona geográfica, nicho específico, temporadas, cosas que no funcionan con tus clientes..." style="min-height:90px"></textarea>
+    <div class="error-msg" id="err5">Contanos qué resultados logran tus clientes para continuar.</div>
     <div class="nav-buttons">
       <button class="btn-back" onclick="prevStep(5)">← ATRÁS</button>
       <button class="btn-next" onclick="generateAll()" id="generateBtn">GENERAR MI SISTEMA →</button>
     </div>
   </div>
 </section>
-<!-- RESULTS SECTION -->
+<!-- RESULTS -->
 <section class="results-section" id="resultsSection">
   <div class="results-header">
     <h2>Tu sistema de ventas <span>listo</span></h2>
     <p id="resultsSubtitle">Generando tu sistema personalizado... Los módulos aparecen a medida que se completan.</p>
   </div>
-  
   <div class="gen-progress" id="genProgress">
     <div class="gen-progress-top">
       <span class="gen-status-text" id="genStatusText">⚡ Generando módulos en paralelo...</span>
@@ -350,262 +306,183 @@
     </div>
     <div class="gen-bar"><div class="gen-bar-fill" id="genBarFill"></div></div>
   </div>
-  
-  <div class="modules-grid" id="modulesGrid">
-    <!-- Modules injected by JS -->
-  </div>
-  
-  <div class="results-actions">
-    <button class="btn-new" onclick="startOver()">← GENERAR DE NUEVO</button>
+  <div class="modules-grid" id="modulesGrid"></div>
+  <div class="results-actions" id="resultsActions" style="display:none">
+    <button class="copy-all-btn" onclick="copyAll()">COPIAR TODO</button>
+    <button class="download-all-btn" onclick="downloadAll()">DESCARGAR TXT</button>
+    <button class="btn-secondary" onclick="startOver()">GENERAR DE NUEVO</button>
   </div>
 </section>
 
-<footer style="text-align:center;padding:40px;color:var(--gray);font-size:12px;border-top:1px solid var(--border);margin-top:80px">
+<footer style="text-align:center;padding:40px;color:var(--gray);font-size:12px;border-top:1px solid var(--border);margin-top:60px">
   <strong style="color:var(--white)">Atajo Creativo</strong> · Recurso exclusivo para clientes · Sistema generado con IA
 </footer>
 
 <script>
-// ===================== STATE =====================
+// ===== STATE =====
 const state = {
-  who: '', source: '', tone: '',
-  responseTime: '', weeklyLeads: '', decisionTime: '',
-  mainProblems: [], closingMethod: [],
-  whatYouSell: '', targetClient: '', priceRange: '',
-  diferencial: '', objections: '', results: '', extra: ''
+  who:'', source:'', tone:'',
+  responseTime:'', weeklyLeads:'', decisionTime:'',
+  mainProblems:[], closingMethod:[],
+  whatYouSell:'', targetClient:'', priceRange:'',
+  diferencial:'', objections:'', results:'', extra:''
 };
 
 const MODULES = [
-  { num: '01', title: 'Mensaje de recepción', sub: 'Primer contacto cálido, sin sonar a bot' },
-  { num: '02', title: 'Seguimiento en visto', sub: 'Rescate con valor, no con presión' },
-  { num: '03', title: 'Preguntas filtro', sub: 'Para calificar al cliente y generar interés' },
-  { num: '04', title: 'Micro acuerdos', sub: 'Que diga sí antes de ver el precio' },
-  { num: '05', title: 'Propuesta adaptada', sub: 'Sin dar precio frío por chat' },
-  { num: '06', title: 'Mensaje post reunión', sub: 'Resumen + pedido de decisión natural' },
-  { num: '07', title: 'Aceleradores de cierre', sub: 'Urgencia, valor extra y escasez real' },
-  { num: '08', title: 'Manual de objeciones', sub: 'Respuestas listas para las más frecuentes' },
-  { num: '09', title: 'Cierre de transición', sub: 'Para mover la conversación a la decisión' },
-  { num: '10', title: 'Guión de llamada', sub: 'Script completo para llamada de seguimiento' }
+  {num:'01',title:'Mensaje de recepción',sub:'Primer contacto cálido, sin sonar a bot'},
+  {num:'02',title:'Seguimiento en visto',sub:'Rescate con valor, no con presión'},
+  {num:'03',title:'Preguntas filtro',sub:'Para calificar al cliente y generar interés'},
+  {num:'04',title:'Micro acuerdos',sub:'Que diga sí antes de ver el precio'},
+  {num:'05',title:'Propuesta adaptada',sub:'Sin dar precio frío por chat'},
+  {num:'06',title:'Mensaje post reunión',sub:'Resumen + pedido de decisión natural'},
+  {num:'07',title:'Aceleradores de cierre',sub:'Urgencia, valor extra y escasez real'},
+  {num:'08',title:'Manual de objeciones',sub:'Respuestas listas para las más frecuentes'},
+  {num:'09',title:'Cierre de transición',sub:'Para mover la conversación a la decisión'},
+  {num:'10',title:'Guión de llamada',sub:'Script completo para llamada de seguimiento'}
 ];
 
+// Track completions separately for progress
 let completedCount = 0;
+// Store raw text per module for copy/download
+const moduleTexts = {};
 
-// ===================== FORM LOGIC =====================
-function startForm() {
-  document.getElementById('hero').style.display = 'none';
-  document.getElementById('formSection').style.display = 'block';
+// ===== FORM LOGIC =====
+function startForm(){
+  document.getElementById('hero').style.display='none';
+  document.getElementById('formSection').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function startOver() {
-  completedCount = 0;
-  document.getElementById('resultsSection').style.display = 'none';
-  document.getElementById('hero').style.display = 'grid';
+function startOver(){
+  completedCount=0;
+  Object.keys(moduleTexts).forEach(k=>delete moduleTexts[k]);
+  document.getElementById('resultsSection').style.display='none';
+  document.getElementById('resultsActions').style.display='none';
+  document.getElementById('hero').style.display='grid';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function selectOpt(key, val, el) {
-  state[key] = val;
-  const parent = el.parentElement;
-  parent.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+function selectOpt(key,val,el){
+  state[key]=val;
+  el.parentElement.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
 }
-
-function toggleCheck(el) {
+function toggleCheck(el){
   el.classList.toggle('selected');
 }
-
-function getChecked(containerId) {
-  return Array.from(document.querySelectorAll('#' + containerId + ' .checkbox-item.selected .checkbox-text'))
-    .map(e => e.textContent);
+function getChecked(containerId){
+  return Array.from(document.querySelectorAll('#'+containerId+' .checkbox-item.selected .checkbox-text'))
+    .map(e=>e.textContent.trim());
 }
-
-function showStep(n) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step'+n).classList.add('active');
-  document.getElementById('progressFill').style.width = (n * 20) + '%';
+  document.getElementById('progressFill').style.width=(n*20)+'%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+function prevStep(cur){showStep(cur-1);}
 
-function prevStep(current) { showStep(current - 1); }
-
-function nextStep(n) {
-  const errEl = document.getElementById('err' + n);
+function nextStep(n){
+  const errEl=document.getElementById('err'+n);
   errEl.classList.remove('show');
-  
-  if (n === 1) {
-    state.responseTime = document.getElementById('responseTime').value;
-    state.weeklyLeads = document.getElementById('weeklyLeads').value;
-    state.mainProblems = getChecked('mainProblems');
-    if (!state.who || !state.responseTime || !state.weeklyLeads) {
-      errEl.classList.add('show'); return;
-    }
-  } else if (n === 2) {
-    state.whatYouSell = document.getElementById('whatYouSell').value.trim();
-    state.targetClient = document.getElementById('targetClient').value.trim();
-    state.priceRange = document.getElementById('priceRange').value.trim();
-    if (!state.whatYouSell || !state.targetClient || !state.priceRange) {
-      errEl.classList.add('show'); return;
-    }
-  } else if (n === 3) {
-    state.decisionTime = document.getElementById('decisionTime').value;
-    state.closingMethod = getChecked('step3');
-    if (!state.source || !state.decisionTime) {
-      errEl.classList.add('show'); return;
-    }
-  } else if (n === 4) {
-    state.diferencial = document.getElementById('diferencial').value.trim();
-    state.objections = document.getElementById('objections').value.trim();
-    if (!state.tone || !state.diferencial || !state.objections) {
-      errEl.classList.add('show'); return;
-    }
+  if(n===1){
+    state.responseTime=document.getElementById('responseTime').value;
+    state.weeklyLeads=document.getElementById('weeklyLeads').value;
+    state.mainProblems=getChecked('mainProblems');
+    if(!state.who||!state.responseTime||!state.weeklyLeads){errEl.classList.add('show');return;}
+  } else if(n===2){
+    state.whatYouSell=document.getElementById('whatYouSell').value.trim();
+    state.targetClient=document.getElementById('targetClient').value.trim();
+    state.priceRange=document.getElementById('priceRange').value.trim();
+    if(!state.whatYouSell||!state.targetClient||!state.priceRange){errEl.classList.add('show');return;}
+  } else if(n===3){
+    state.decisionTime=document.getElementById('decisionTime').value;
+    state.closingMethod=getChecked('closingMethods');
+    if(!state.source||!state.decisionTime){errEl.classList.add('show');return;}
+  } else if(n===4){
+    state.diferencial=document.getElementById('diferencial').value.trim();
+    state.objections=document.getElementById('objections').value.trim();
+    if(!state.tone||!state.diferencial||!state.objections){errEl.classList.add('show');return;}
   }
-  
-  showStep(n + 1);
+  showStep(n+1);
 }
 
-// ===================== GENERATION =====================
-function buildBaseContext() {
+// ===== MARKDOWN RENDERER (simple) =====
+function renderMd(text){
+  if(!text) return '';
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^#{3} (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^#{2} (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^---$/gm,'<hr>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>')
+    .replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/\n/g,'<br>')
+    .replace(/^(?!<[hbuclo]|<\/[hbuclo])(.+)$/gm,'<p>$1</p>');
+}
+
+// ===== BUILD CONTEXT =====
+function buildBaseContext(){
+  const problems = state.mainProblems.length ? state.mainProblems.join(', ') : 'ninguno especificado';
+  const closing = state.closingMethod.length ? state.closingMethod.join(', ') : 'no especificado';
   return `NEGOCIO: ${state.whatYouSell}
 CLIENTE IDEAL: ${state.targetClient}
 PRECIO: ${state.priceRange}
-TONO: ${state.tone}
-QUIÉN ATIENDE: ${state.who} | TIEMPO RESPUESTA: ${state.responseTime} | CONSULTAS/SEMANA: ${state.weeklyLeads}
-CANAL VENTA: ${state.source} | FORMA CIERRE: ${state.closingMethod.join(', ')} | TIEMPO DECISIÓN: ${state.decisionTime}
+TONO COMUNICACIÓN: ${state.tone}
+QUIÉN ATIENDE: ${state.who} | TIEMPO DE RESPUESTA: ${state.responseTime} | CONSULTAS/SEMANA: ${state.weeklyLeads}
+CANAL DE LLEGADA: ${state.source} | MÉTODO DE CIERRE: ${closing} | TIEMPO DE DECISIÓN: ${state.decisionTime}
 DIFERENCIAL: ${state.diferencial}
-OBJECIONES COMUNES: ${state.objections}
-RESULTADOS CLIENTES: ${state.results}
-EXTRA: ${state.extra || 'ninguno'}`;
+OBJECIONES PRINCIPALES: ${state.objections}
+RESULTADOS DEL CLIENTE: ${state.results}
+PROBLEMAS ACTUALES: ${problems}
+INFO EXTRA: ${state.extra||'ninguna'}`;
 }
 
-function buildPrompt(moduleNum) {
-  const base = buildBaseContext();
+function buildPrompt(n){
+  const ctx = buildBaseContext();
+  const base = `Eres experto en ventas por WhatsApp y comunicación comercial. Datos del negocio:\n${ctx}\n\n`;
   const prompts = {
-    1: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 1: MENSAJE DE RECEPCIÓN.
-Es el primer mensaje para responder una consulta de un posible cliente.
-Debe sonar humano, cálido y profesional, no un bot.
-Incluí: saludo personalizado, que les das la bienvenida, pregunta que genera curiosidad sobre qué necesitan.
-Máximo 3 mensajes cortos de WhatsApp listos para copiar. Formato claro y directo.`,
-
-    2: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 2: SEGUIMIENTO CUANDO TE DEJAN EN VISTO.
-Secuencia de 3 mensajes para cuando el cliente no responde, espaciados en el tiempo.
-No debe sonar desesperado ni presionar. Tiene que rescatar con valor.
-Mensaje 1 (1 día): suave recordatorio con valor.
-Mensaje 2 (3 días): nuevo ángulo diferente.
-Mensaje 3 (1 semana): cierre amigable.
-Formato: mensajes listos para copiar y pegar.`,
-
-    3: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 3: PREGUNTAS FILTRO.
-Son las preguntas que se hacen al inicio para calificar al cliente y generar interés a la vez.
-5 a 7 preguntas poderosas que: califiquen al cliente, generen curiosidad, y muestren que sos experto.
-Técnica SPIN aplicada al negocio. Formato: lista numerada, preguntas directas.`,
-
-    4: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 4: MICRO ACUERDOS.
-Son pequeñas validaciones que se obtienen del cliente antes de mostrar el precio.
-Objetivo: que el cliente diga sí varias veces antes de ver el precio (técnica del compromiso progresivo).
-5 micro-acuerdos específicos para este negocio, con el mensaje exacto para obtener cada uno.
-Formato: situación + mensaje a enviar.`,
-
-    5: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 5: PROPUESTA ADAPTADA SIN PRECIO FRÍO.
-Cómo presentar la propuesta por WhatsApp sin que el cliente se asuste con el precio.
-Incluí: cómo hacer el puente de valor antes del precio, 3 formas diferentes de presentar el precio según el perfil del cliente (sensible al precio, orientado a resultados, comparativo), y mensaje final de seguimiento post-propuesta.`,
-
-    6: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 6: MENSAJE POST REUNIÓN.
-Mensaje a enviar después de una videollamada, llamada o reunión.
-Debe: resumir lo hablado, reforzar el valor, hacer un pedido de decisión natural (no agresivo).
-Incluí 2 versiones: una para cuando fue muy bien y otra para cuando quedó indeciso.`,
-
-    7: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 7: 3 ACELERADORES DE CIERRE.
-Son 3 estrategias para acelerar la decisión de compra, cada una con el mensaje exacto.
-Acelerador 1: Urgencia real (tiempo limitado, cupos, etc.)
-Acelerador 2: Valor extra (bonus, beneficio adicional)
-Acelerador 3: Escasez (disponibilidad limitada)
-Adaptados específicamente a este negocio. No genéricos.`,
-
-    8: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Las objeciones más comunes son: ${state.objections}
-
-Escribí el MÓDULO 8: MANUAL DE OBJECIONES.
-Para CADA objeción mencionada y 2 adicionales frecuentes en este rubro:
-- La objeción exacta
-- Por qué dice eso realmente (la objeción real detrás)
-- Respuesta que desarma y reencuadra sin defender
-- Mensaje listo para WhatsApp
-Formato claro por objeción.`,
-
-    9: `Eres un experto en ventas por WhatsApp. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 9: CIERRE DE TRANSICIÓN.
-Son los mensajes para mover la conversación del WhatsApp a la decisión final.
-Incluí:
-- Mensaje para proponer una reunión/llamada desde el chat
-- Mensaje para pedir la decisión directamente
-- Mensaje de cierre cuando están casi decididos
-- Mensaje de rescate de 30 días después si nunca cerraron
-Mensajes concretos, listos para copiar.`,
-
-    10: `Eres un experto en ventas por WhatsApp y llamadas de cierre. Con esta info del negocio:
-${base}
-
-Escribí el MÓDULO 10: GUIÓN DE LLAMADA DE SEGUIMIENTO.
-Script completo para una llamada telefónica o videollamada de seguimiento con un lead de WhatsApp.
-Estructura (con texto exacto a decir):
-1. Apertura (30 seg): cómo empezar sin sonar vendedor
-2. Rapport (1 min): 2-3 preguntas para retomar el contexto
-3. Sondeo de necesidad: preguntas SPIN adaptadas
-4. Presentación de valor: cómo presentar la solución
-5. Manejo de objeciones: respuestas a las 3 más comunes
-6. Llamada a la acción: cómo pedir la decisión
-7. Cierre: cómo terminar la llamada (con o sin venta)
-Formato: guión completo con indicaciones entre paréntesis.`
+    1: base+`Crea el MÓDULO 1 — MENSAJE DE RECEPCIÓN para este negocio. Primer mensaje al recibir una consulta. Debe sonar humano y cálido. Incluí: saludo personalizado, bienvenida breve, pregunta que genera curiosidad. Máximo 3 mensajes cortos listos para copiar en WhatsApp.`,
+    2: base+`Crea el MÓDULO 2 — SEGUIMIENTO EN VISTO. Secuencia de 3 mensajes para cuando el cliente no responde. No presionar, rescatar con valor. M1 (día 1): recordatorio suave con valor. M2 (día 3): nuevo ángulo. M3 (semana 1): cierre amigable. Mensajes listos para copiar.`,
+    3: base+`Crea el MÓDULO 3 — PREGUNTAS FILTRO. 6 preguntas para calificar al cliente y generar interés simultáneamente. Usar técnica SPIN adaptada al negocio. Lista numerada, preguntas directas y breves.`,
+    4: base+`Crea el MÓDULO 4 — MICRO ACUERDOS. 5 pequeñas validaciones para obtener del cliente antes de mostrar el precio (técnica de compromiso progresivo). Por cada una: situación + mensaje exacto a enviar.`,
+    5: base+`Crea el MÓDULO 5 — PROPUESTA ADAPTADA. Cómo presentar el precio sin que el cliente se asuste. Incluí: puente de valor previo al precio, 3 formas de presentar según perfil del cliente (sensible al precio / orientado a resultados / comparativo), mensaje post-propuesta.`,
+    6: base+`Crea el MÓDULO 6 — MENSAJE POST REUNIÓN. Mensaje para enviar después de una llamada o reunión. Debe resumir lo hablado, reforzar el valor, pedir decisión de forma natural. 2 versiones: reunión que fue muy bien / cliente quedó indeciso.`,
+    7: base+`Crea el MÓDULO 7 — ACELERADORES DE CIERRE. 3 estrategias para acelerar la decisión con el mensaje exacto. Acelerador 1: urgencia real. Acelerador 2: valor extra o bonus. Acelerador 3: escasez de disponibilidad. Adaptados a este negocio específico.`,
+    8: base+`Las objeciones más frecuentes son: ${state.objections}. Crea el MÓDULO 8 — MANUAL DE OBJECIONES. Para cada objeción y 2 adicionales frecuentes del rubro: objeción exacta / por qué la dice realmente / respuesta que desarma / mensaje listo para WhatsApp.`,
+    9: base+`Crea el MÓDULO 9 — CIERRE DE TRANSICIÓN. Mensajes para mover la conversación a la decisión final: proponer reunión desde chat / pedir decisión directa / mensaje cuando están casi decididos / rescate a 30 días si no cerraron. Mensajes listos para copiar.`,
+    10: base+`Crea el MÓDULO 10 — GUIÓN DE LLAMADA. Script completo para llamada de seguimiento. Estructura con texto exacto: 1) Apertura (30s) 2) Rapport y contexto 3) Sondeo SPIN 4) Presentación de valor 5) Objeciones más frecuentes 6) Pedido de decisión 7) Cierre (con o sin venta). Indicaciones entre paréntesis.`
   };
-  return prompts[moduleNum];
+  return prompts[n];
 }
 
-async function callModuleAPI(moduleNum) {
-  const prompt = buildPrompt(moduleNum);
-  const response = await fetch('/.netlify/functions/claude', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, module: moduleNum })
+// ===== API CALL =====
+async function callModuleAPI(n){
+  const resp = await fetch('/.netlify/functions/claude',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({prompt:buildPrompt(n),module:n})
   });
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error('Error ' + response.status + ': ' + errText.substring(0, 200));
+  if(!resp.ok){
+    const t=await resp.text();
+    throw new Error('Error '+resp.status+': '+t.substring(0,150));
   }
-  const data = await response.json();
-  return data.result || data.error || 'Sin respuesta';
+  const data=await resp.json();
+  if(data.error) throw new Error(data.error);
+  return data.result||'';
 }
 
-function renderModules() {
-  const grid = document.getElementById('modulesGrid');
-  grid.innerHTML = '';
-  MODULES.forEach((m, i) => {
-    const idx = i + 1;
-    grid.innerHTML += `<div class="module-card" id="mc${idx}">
+// ===== RENDER MODULES =====
+function renderModules(){
+  const grid=document.getElementById('modulesGrid');
+  grid.innerHTML=MODULES.map((m,i)=>{
+    const idx=i+1;
+    return `<div class="module-card" id="mc${idx}">
       <div class="module-card-header" onclick="toggleModule(${idx})">
         <span class="mc-num">${m.num}</span>
         <div class="mc-title">
@@ -613,112 +490,157 @@ function renderModules() {
           <div class="mc-title-sub">${m.sub}</div>
         </div>
         <span class="mc-status pending" id="mcs${idx}">PENDIENTE</span>
-        <span class="mc-arrow">▼</span>
+        <span class="mc-arrow" id="mca${idx}">▼</span>
       </div>
       <div class="module-content" id="mcc${idx}">
-        <div class="module-content-inner loading-text" id="mct${idx}">Generando...<span class="typing-cursor"></span></div>
-        <button class="copy-btn" onclick="copyModule(${idx})" style="display:none" id="mcb${idx}">COPIAR MÓDULO</button>
+        <div class="module-content-inner loading-text" id="mct${idx}">Generando<span class="typing-cursor"></span></div>
+        <div class="module-actions" id="mca-btns${idx}" style="display:none">
+          <button class="copy-btn" onclick="copyModule(${idx})">COPIAR MÓDULO</button>
+        </div>
       </div>
     </div>`;
-  });
+  }).join('');
 }
 
-function toggleModule(idx) {
-  const card = document.getElementById('mc' + idx);
+function toggleModule(idx){
+  const card=document.getElementById('mc'+idx);
   card.classList.toggle('open');
 }
 
-function updateProgress() {
+function setStatus(idx,status){
+  const el=document.getElementById('mcs'+idx);
+  const labels={pending:'PENDIENTE',generating:'GENERANDO...',done:'LISTO ✓',error:'ERROR ↺'};
+  el.className='mc-status '+status;
+  el.textContent=labels[status]||status;
+}
+
+function updateProgress(){
   completedCount++;
-  const pct = (completedCount / 10) * 100;
-  document.getElementById('genBarFill').style.width = pct + '%';
-  document.getElementById('genCount').textContent = completedCount + ' / 10';
-  if (completedCount >= 10) {
-    document.getElementById('genStatusText').textContent = '✅ ¡Sistema completo generado!';
-    document.getElementById('resultsSubtitle').textContent = 'Tu sistema de ventas personalizado está listo. Hacé clic en cada módulo para ver el contenido.';
+  const pct=(completedCount/10)*100;
+  document.getElementById('genBarFill').style.width=pct+'%';
+  document.getElementById('genCount').textContent=completedCount+' / 10';
+  if(completedCount>=10){
+    document.getElementById('genStatusText').textContent='✅ Sistema completo generado';
+    document.getElementById('resultsSubtitle').textContent='Tu sistema de ventas personalizado está listo. Hacé clic en cada módulo para ver y copiar el contenido.';
+    document.getElementById('resultsActions').style.display='flex';
   }
 }
 
-function setModuleStatus(idx, status) {
-  const el = document.getElementById('mcs' + idx);
-  el.className = 'mc-status ' + status;
-  const labels = { pending: 'PENDIENTE', generating: 'GENERANDO...', done: 'LISTO ✓', error: 'ERROR' };
-  el.textContent = labels[status] || status;
-}
-
-function setModuleContent(idx, text) {
-  const contentEl = document.getElementById('mct' + idx);
-  contentEl.className = 'module-content-inner';
-  contentEl.textContent = text;
-  document.getElementById('mcb' + idx).style.display = 'block';
-  // Auto-open first completed module
-  if (completedCount === 1) {
-    document.getElementById('mc' + idx).classList.add('open');
+function setModuleContent(idx,text){
+  moduleTexts[idx]=text;
+  const contentEl=document.getElementById('mct'+idx);
+  contentEl.className='module-content-inner';
+  contentEl.innerHTML=renderMd(text);
+  document.getElementById('mca-btns'+idx).style.display='flex';
+  // Auto-open first module that completes
+  if(completedCount===0){
+    document.getElementById('mc'+idx).classList.add('open');
   }
 }
 
-function copyModule(idx) {
-  const text = document.getElementById('mct' + idx).textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById('mcb' + idx);
-    btn.textContent = '✓ COPIADO';
-    setTimeout(() => { btn.textContent = 'COPIAR MÓDULO'; }, 2000);
+function copyModule(idx){
+  const text=moduleTexts[idx]||document.getElementById('mct'+idx).textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=event.target;
+    btn.textContent='✓ COPIADO';
+    setTimeout(()=>btn.textContent='COPIAR MÓDULO',2000);
+  }).catch(()=>{
+    // Fallback
+    const ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    const btn=event.target;
+    btn.textContent='✓ COPIADO';
+    setTimeout(()=>btn.textContent='COPIAR MÓDULO',2000);
   });
 }
 
-async function generateModule(idx) {
-  setModuleStatus(idx, 'generating');
-  // Auto-open while generating so user sees progress
-  const card = document.getElementById('mc' + idx);
-  try {
-    const result = await callModuleAPI(idx);
-    setModuleContent(idx, result);
-    setModuleStatus(idx, 'done');
+function copyAll(){
+  const allText=MODULES.map((m,i)=>{
+    const idx=i+1;
+    const text=moduleTexts[idx]||'(no generado)';
+    return '=== MÓDULO '+m.num+': '+m.title.toUpperCase()+' ===\n\n'+text;
+  }).join('\n\n'+('=').repeat(50)+'\n\n');
+  navigator.clipboard.writeText(allText).then(()=>{
+    const btn=event.target;btn.textContent='✓ COPIADO TODO';
+    setTimeout(()=>btn.textContent='COPIAR TODO',2000);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=allText;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    const btn=event.target;btn.textContent='✓ COPIADO TODO';
+    setTimeout(()=>btn.textContent='COPIAR TODO',2000);
+  });
+}
+
+function downloadAll(){
+  const header='SISTEMA DE VENTAS POR WHATSAPP — ATAJO CREATIVO\n'+'='.repeat(50)+'\nNegocio: '+state.whatYouSell+'\nFecha: '+new Date().toLocaleDateString('es-AR')+'\n'+'='.repeat(50)+'\n\n';
+  const allText=header+MODULES.map((m,i)=>{
+    const idx=i+1;
+    const text=moduleTexts[idx]||'(no generado)';
+    return '=== MÓDULO '+m.num+': '+m.title.toUpperCase()+' ===\n'+ m.sub+'\n\n'+text;
+  }).join('\n\n'+('=').repeat(50)+'\n\n');
+  const blob=new Blob([allText],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='sistema-ventas-whatsapp.txt';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+// ===== GENERATE =====
+async function generateModule(idx){
+  setStatus(idx,'generating');
+  document.getElementById('mc'+idx).classList.add('open');
+  try{
+    const result=await callModuleAPI(idx);
+    setModuleContent(idx,result);
+    setStatus(idx,'done');
     updateProgress();
-    card.classList.add('done');
-  } catch (err) {
-    document.getElementById('mct' + idx).textContent = 'Error: ' + err.message + '\n\nHacé clic en "REINTENTAR" para volver a generar este módulo.';
-    setModuleStatus(idx, 'error');
-    document.getElementById('mcb' + idx).textContent = 'REINTENTAR';
-    document.getElementById('mcb' + idx).style.display = 'block';
-    document.getElementById('mcb' + idx).onclick = () => retryModule(idx);
+    document.getElementById('mc'+idx).classList.remove('open');
+    // Auto-open first completed
+    if(completedCount===1) document.getElementById('mc'+idx).classList.add('open');
+  } catch(err){
+    document.getElementById('mct'+idx).className='module-content-inner';
+    document.getElementById('mct'+idx).textContent='Error: '+err.message;
+    document.getElementById('mca-btns'+idx).style.display='flex';
+    document.getElementById('mca-btns'+idx).innerHTML='<button class="copy-btn" style="color:#f87171;border-color:#f87171" onclick="retryModule('+idx+')">REINTENTAR</button>';
+    setStatus(idx,'error');
     updateProgress();
   }
 }
 
-async function retryModule(idx) {
-  completedCount = Math.max(0, completedCount - 1);
-  document.getElementById('mct' + idx).className = 'module-content-inner loading-text';
-  document.getElementById('mct' + idx).innerHTML = 'Reintentando...<span class="typing-cursor"></span>';
-  document.getElementById('mcb' + idx).style.display = 'none';
+async function retryModule(idx){
+  completedCount=Math.max(0,completedCount-1);
+  const pct=(completedCount/10)*100;
+  document.getElementById('genBarFill').style.width=pct+'%';
+  document.getElementById('genCount').textContent=completedCount+' / 10';
+  document.getElementById('mct'+idx).className='module-content-inner loading-text';
+  document.getElementById('mct'+idx).innerHTML='Reintentando<span class="typing-cursor"></span>';
+  document.getElementById('mca-btns'+idx).style.display='none';
+  if(completedCount<10){
+    document.getElementById('genStatusText').textContent='⚡ Generando módulos en paralelo...';
+    document.getElementById('resultsActions').style.display='none';
+  }
   await generateModule(idx);
 }
 
-async function generateAll() {
-  state.results = document.getElementById('results').value.trim();
-  state.extra = document.getElementById('extra').value.trim();
-  
-  const errEl = document.getElementById('err5');
-  if (!state.results) { errEl.classList.add('show'); return; }
+async function generateAll(){
+  state.results=document.getElementById('results').value.trim();
+  state.extra=document.getElementById('extra').value.trim();
+  const errEl=document.getElementById('err5');
+  if(!state.results){errEl.classList.add('show');return;}
   errEl.classList.remove('show');
-  
-  document.getElementById('generateBtn').textContent = 'GENERANDO...';
-  document.getElementById('generateBtn').disabled = true;
-  
-  // Switch to results view
-  document.getElementById('formSection').style.display = 'none';
-  document.getElementById('resultsSection').style.display = 'block';
+  const btn=document.getElementById('generateBtn');
+  btn.textContent='GENERANDO...';btn.disabled=true;
+  document.getElementById('formSection').style.display='none';
+  document.getElementById('resultsSection').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
-  
-  completedCount = 0;
+  completedCount=0;
+  Object.keys(moduleTexts).forEach(k=>delete moduleTexts[k]);
   renderModules();
-  
-  // Launch ALL 10 modules in parallel
-  const promises = MODULES.map((_, i) => generateModule(i + 1));
-  await Promise.allSettled(promises);
-  
-  document.getElementById('generateBtn').textContent = 'GENERAR MI SISTEMA →';
-  document.getElementById('generateBtn').disabled = false;
+  await Promise.allSettled(MODULES.map((_,i)=>generateModule(i+1)));
+  btn.textContent='GENERAR MI SISTEMA →';btn.disabled=false;
 }
 </script>
 </body>
