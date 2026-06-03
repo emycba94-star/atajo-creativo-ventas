@@ -25,7 +25,6 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .module-num{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1px;min-width:24px;padding-top:2px}
 .module-name{font-size:14px;font-weight:700;margin-bottom:2px}
 .module-desc{font-size:12px;color:var(--gray)}
-/* LAST SYSTEM BANNER */
 .last-system-banner{background:rgba(198,241,53,.06);border:1px solid rgba(198,241,53,.25);padding:16px 24px;max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .last-system-info{font-size:13px;color:var(--light)}
 .last-system-info strong{color:var(--green)}
@@ -33,7 +32,6 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .btn-view-last:hover{background:var(--green);color:#000}
 .btn-clear-last{background:transparent;border:1px solid var(--border);color:var(--gray);font-size:11px;padding:8px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .btn-clear-last:hover{border-color:#555;color:var(--white)}
-/* FORM */
 .form-section{max-width:760px;margin:0 auto;padding:80px 40px}
 .progress-bar{height:3px;background:var(--border);margin-bottom:48px;border-radius:2px}
 .progress-fill{height:100%;background:var(--green);border-radius:2px;transition:width .4s ease}
@@ -65,7 +63,6 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .btn-back:hover{border-color:#555;color:var(--white)}
 .error-msg{color:#ff6b6b;font-size:13px;background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);padding:12px 16px;margin-top:8px;display:none}
 .error-msg.show{display:block}
-/* RESULTS */
 .results-section{max-width:900px;margin:0 auto;padding:60px 40px;display:none}
 .results-header{text-align:center;margin-bottom:40px}
 .results-header h2{font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:12px}
@@ -111,42 +108,29 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .copy-btn:hover{border-color:var(--green);color:var(--green)}
 .rewrite-btn{background:transparent;border:1px solid rgba(198,241,53,.3);color:var(--green);font-size:11px;font-weight:700;padding:8px 14px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .rewrite-btn:hover{background:rgba(198,241,53,.08);border-color:var(--green)}
-/* REWRITE PANEL */
-.rewrite-panel{display:none;background:#0d0d0d;border:1px solid rgba(198,241,53,.2);padding:16px;margin-top:12px;border-radius:2px}
+.rewrite-panel{display:none;background:#0d0d0d;border:1px solid rgba(198,241,53,.2);padding:16px;margin-top:12px}
 .rewrite-panel.open{display:block}
 .rewrite-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:block}
-.rewrite-input{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:12px 14px;font-size:13px;outline:none;font-family:inherit;margin-bottom:10px;border-radius:2px}
+.rewrite-input{width:100%;background:#111;border:2px solid var(--border);color:var(--white);padding:12px 14px;font-size:13px;outline:none;font-family:inherit;margin-bottom:10px}
 .rewrite-input:focus{border-color:var(--green)}.rewrite-input::placeholder{color:var(--gray)}
 .rewrite-btns{display:flex;gap:8px}
 .btn-do-rewrite{background:var(--green);color:#000;font-weight:800;font-size:12px;padding:10px 20px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
-.btn-do-rewrite:hover{background:#d4ff44}
-.btn-do-rewrite:disabled{opacity:.5;cursor:not-allowed}
+.btn-do-rewrite:hover{background:#d4ff44}.btn-do-rewrite:disabled{opacity:.5;cursor:not-allowed}
 .btn-cancel-rewrite{background:transparent;border:1px solid var(--border);color:var(--gray);font-size:12px;padding:10px 16px;cursor:pointer;text-transform:uppercase;transition:all .2s}
 .btn-cancel-rewrite:hover{border-color:#555;color:var(--white)}
 .results-actions{display:flex;gap:12px;margin-top:40px;justify-content:center;flex-wrap:wrap}
 .btn-secondary{background:transparent;border:2px solid var(--border);color:var(--gray);font-weight:700;font-size:13px;padding:14px 24px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .btn-secondary:hover{border-color:#555;color:var(--white)}
-.btn-outline-green{background:transparent;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
-.btn-outline-green:hover{background:var(--green);color:#000}
 .download-all-btn{background:var(--green);color:#000;font-weight:800;font-size:13px;padding:14px 28px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .download-all-btn:hover{background:#d4ff44}
 .copy-all-btn{background:transparent;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .copy-all-btn:hover{background:var(--green);color:#000}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-@media(max-width:768px){
-.hero{grid-template-columns:1fr;padding:40px 24px;min-height:auto;gap:40px}
-.form-section{padding:40px 20px}
-.results-section{padding:40px 20px}
-.options-grid{grid-template-columns:1fr 1fr}
-.results-actions{flex-direction:column;align-items:stretch}
-.results-actions button{text-align:center}
-.last-system-banner{flex-direction:column;align-items:flex-start}
-}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding:40px 24px;min-height:auto;gap:40px}.form-section{padding:40px 20px}.results-section{padding:40px 20px}.options-grid{grid-template-columns:1fr 1fr}.results-actions{flex-direction:column;align-items:stretch}.last-system-banner{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
-<!-- LAST SYSTEM BANNER (shown if localStorage has saved system) -->
 <div id="lastSystemBanner" style="display:none" class="last-system-banner">
   <div class="last-system-info">⚡ Tenés un sistema guardado: <strong id="lastSystemName"></strong> — <span id="lastSystemDate"></span></div>
   <div style="display:flex;gap:8px">
@@ -154,8 +138,6 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
     <button class="btn-clear-last" onclick="clearLastSystem()">BORRAR</button>
   </div>
 </div>
-
-<!-- HERO -->
 <section class="hero" id="hero">
 <div class="hero-left">
 <div class="hero-tag">Recurso exclusivo para clientes</div>
@@ -183,8 +165,6 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <div class="module-item"><span class="module-num">10</span><div><div class="module-name">Guión de llamada</div><div class="module-desc">Script completo para llamada de seguimiento</div></div></div>
 </div>
 </section>
-
-<!-- FORM -->
 <section class="form-section" id="formSection" style="display:none">
 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
 <div class="step active" id="step1">
@@ -198,9 +178,9 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <div class="opt-card" onclick="selectOpt('who','both',this)"><div class="opt-icon">🔄</div><div class="opt-label">Depende</div><div class="opt-sub">A veces yo, a veces otro</div></div>
 </div>
 <label class="field-label">¿Cuánto tardás en responder?</label>
-<select class="form-select" id="responseTime"><option value="">Seleccioná...</option><option value="menos de 1 hora">Menos de 1 hora</option><option value="1 a 3 horas">1 a 3 horas</option><option value="más de 3 horas">Más de 3 horas</option><option value="al día siguiente">Al día siguiente</option></select>
+<select class="form-select" id="responseTime"><option value="">Seleccióná...</option><option value="menos de 1 hora">Menos de 1 hora</option><option value="1 a 3 horas">1 a 3 horas</option><option value="más de 3 horas">Más de 3 horas</option><option value="al día siguiente">Al día siguiente</option></select>
 <label class="field-label">¿Consultas por semana?</label>
-<select class="form-select" id="weeklyLeads"><option value="">Seleccioná...</option><option value="menos de 5">Menos de 5</option><option value="5 a 15">5 a 15</option><option value="15 a 30">15 a 30</option><option value="más de 30">Más de 30</option></select>
+<select class="form-select" id="weeklyLeads"><option value="">Seleccióná...</option><option value="menos de 5">Menos de 5</option><option value="5 a 15">5 a 15</option><option value="15 a 30">15 a 30</option><option value="más de 30">Más de 30</option></select>
 <label class="field-label">¿Tu mayor problema con consultas? (opcional)</label>
 <div class="checkbox-group" id="mainProblems">
 <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Llegan pocas consultas</span></div>
@@ -210,17 +190,17 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Consultas de baja calidad</span></div>
 <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">No sé qué funciona</span></div>
 </div>
-<div class="error-msg" id="err1">Seleccioná quién atiende y los tiempos de respuesta para continuar.</div>
+<div class="error-msg" id="err1">Seleccióná quién atiende y los tiempos de respuesta para continuar.</div>
 <div class="nav-buttons"><button class="btn-next" onclick="nextStep(1)">SIGUIENTE →</button></div>
 </div>
 <div class="step" id="step2">
 <div class="step-label">Paso 2 de 5</div>
 <div class="step-title">Tu <span style="color:var(--green)">negocio</span></div>
-<div class="step-desc">Contanos qué vendés y a quién. Cuanto más detallado, mejor el sistema.</div>
+<div class="step-desc">Contános qué vendés y a quién.</div>
 <label class="field-label">¿Qué vendés exactamente?</label>
-<textarea class="form-textarea" id="whatYouSell" placeholder="Ej: Diseño de logos y branding para emprendedores. Trabajo en redes desde hace 3 años, mis paquetes van de $150 a $800..."></textarea>
-<label class="field-label">¿A quién le vendés? (tu cliente ideal)</label>
-<textarea class="form-textarea" id="targetClient" placeholder="Ej: Emprendedores de 25-40 años que están arrancando y necesitan diferenciarse visualmente..."></textarea>
+<textarea class="form-textarea" id="whatYouSell" placeholder="Ej: Diseño de logos para emprendedores, paquetes de $150 a $800..."></textarea>
+<label class="field-label">¿A quién le vendés?</label>
+<textarea class="form-textarea" id="targetClient" placeholder="Ej: Emprendedores de 25-40 años que arrancan y necesitan diferenciarse..."></textarea>
 <label class="field-label">¿Cuánto cuesta lo que vendés?</label>
 <input class="form-input" id="priceRange" placeholder="Ej: Desde $150 hasta $800 según el paquete" />
 <div class="error-msg" id="err2">Completá los tres campos para continuar.</div>
@@ -246,14 +226,14 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <div class="checkbox-item" onclick="toggleCheck(this)"><div class="checkbox-dot">✓</div><span class="checkbox-text">Encuentro presencial</span></div>
 </div>
 <label class="field-label">¿Cuánto demora un cliente en decidir?</label>
-<select class="form-select" id="decisionTime"><option value="">Seleccioná...</option><option value="el mismo día">El mismo día</option><option value="unos días">Unos días</option><option value="una o dos semanas">Una o dos semanas</option><option value="más de dos semanas">Más de dos semanas</option></select>
-<div class="error-msg" id="err3">Seleccioná cómo llegan los clientes y el tiempo de decisión.</div>
+<select class="form-select" id="decisionTime"><option value="">Seleccióná...</option><option value="el mismo día">El mismo día</option><option value="unos días">Unos días</option><option value="una o dos semanas">Una o dos semanas</option><option value="más de dos semanas">Más de dos semanas</option></select>
+<div class="error-msg" id="err3">Seleccióná cómo llegan los clientes y el tiempo de decisión.</div>
 <div class="nav-buttons"><button class="btn-back" onclick="prevStep(3)">← ATRÁS</button><button class="btn-next" onclick="nextStep(3)">SIGUIENTE →</button></div>
 </div>
 <div class="step" id="step4">
 <div class="step-label">Paso 4 de 5</div>
 <div class="step-title">Tu <span style="color:var(--green)">tono</span> y diferencial</div>
-<div class="step-desc">Esto hace que los mensajes suenen a vos, no a una plantilla genérica.</div>
+<div class="step-desc">Esto hace que los mensajes suenen a vos.</div>
 <label class="field-label">¿Cómo es tu tono al escribir?</label>
 <div class="options-grid">
 <div class="opt-card" onclick="selectOpt('tone','cercano e informal',this)"><div class="opt-icon">😊</div><div class="opt-label">Cercano</div><div class="opt-sub">Informal y cálido</div></div>
@@ -262,30 +242,28 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <div class="opt-card" onclick="selectOpt('tone','experto y técnico',this)"><div class="opt-icon">🎓</div><div class="opt-label">Experto</div><div class="opt-sub">Autoridad y técnica</div></div>
 </div>
 <label class="field-label">¿Qué te hace diferente de la competencia?</label>
-<textarea class="form-textarea" id="diferencial" placeholder="Ej: Entrego en 48hs, doy revisiones ilimitadas, 5 años de experiencia..."></textarea>
-<label class="field-label">¿Cuáles son las 3 objeciones más comunes que escuchás?</label>
+<textarea class="form-textarea" id="diferencial" placeholder="Ej: Entrego en 48hs, revisiones ilimitadas, 5 años de experiencia..."></textarea>
+<label class="field-label">¿Cuáles son las 3 objeciones más comunes?</label>
 <textarea class="form-textarea" id="objections" placeholder="Ej: 'Es muy caro', 'Lo tengo que pensar', 'Ya tengo alguien'..."></textarea>
-<div class="error-msg" id="err4">Seleccioná tu tono y completá diferencial y objeciones.</div>
+<div class="error-msg" id="err4">Seleccióná tu tono y completá diferencial y objeciones.</div>
 <div class="nav-buttons"><button class="btn-back" onclick="prevStep(4)">← ATRÁS</button><button class="btn-next" onclick="nextStep(4)">SIGUIENTE →</button></div>
 </div>
 <div class="step" id="step5">
 <div class="step-label">Paso 5 de 5</div>
 <div class="step-title">Contexto <span style="color:var(--green)">extra</span></div>
-<div class="step-desc">Últimos detalles para hacer el sistema todavía más preciso.</div>
+<div class="step-desc">Últimos detalles para hacer el sistema más preciso.</div>
 <label class="field-label">¿Qué resultados logran tus clientes con vos?</label>
-<textarea class="form-textarea" id="results" placeholder="Ej: Mis clientes logran diferenciarse, consiguen más clientes..."></textarea>
+<textarea class="form-textarea" id="results" placeholder="Ej: Mis clientes logran diferenciarse y conseguir más consultas..."></textarea>
 <label class="field-label">¿Algo más que la IA deba saber? (opcional)</label>
 <textarea class="form-textarea" id="extra" placeholder="Zona geográfica, nicho específico, temporadas..." style="min-height:90px"></textarea>
-<div class="error-msg" id="err5">Contanos qué resultados logran tus clientes para continuar.</div>
+<div class="error-msg" id="err5">Contános qué resultados logran tus clientes para continuar.</div>
 <div class="nav-buttons"><button class="btn-back" onclick="prevStep(5)">← ATRÁS</button><button class="btn-next" onclick="generateAll()" id="generateBtn">GENERAR MI SISTEMA →</button></div>
 </div>
 </section>
-
-<!-- RESULTS -->
 <section class="results-section" id="resultsSection">
 <div class="results-header">
 <h2>Tu sistema de ventas <span>listo</span></h2>
-<p id="resultsSubtitle">Generando tu sistema personalizado... Los módulos aparecen a medida que se completan.</p>
+<p id="resultsSubtitle">Generando tu sistema personalizado...</p>
 </div>
 <div class="gen-progress" id="genProgress">
 <div class="gen-progress-top">
@@ -301,73 +279,18 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 <button class="btn-secondary" onclick="startOver()">GENERAR DE NUEVO</button>
 </div>
 </section>
-
 <footer style="text-align:center;padding:40px;color:var(--gray);font-size:12px;border-top:1px solid var(--border);margin-top:60px">
 <strong style="color:var(--white)">Atajo Creativo</strong> · Recurso exclusivo para clientes · Sistema generado con IA
 </footer>
 <script>
 const state={who:'',source:'',tone:'',responseTime:'',weeklyLeads:'',decisionTime:'',mainProblems:[],closingMethod:[],whatYouSell:'',targetClient:'',priceRange:'',diferencial:'',objections:'',results:'',extra:''};
-const MODULES=[{num:'01',title:'Mensaje de recepción',sub:'Primer contacto cálido, sin sonar a bot'},{num:'02',title:'Seguimiento en visto',sub:'Rescate con valor, no con presión'},{num:'03',title:'Preguntas filtro',sub:'Para calificar al cliente y generar interés'},{num:'04',title:'Micro acuerdos',sub:'Que diga sí antes de ver el precio'},{num:'05',title:'Propuesta adaptada',sub:'Sin dar precio frío por chat'},{num:'06',title:'Mensaje post reunión',sub:'Resumen + pedido de decisión natural'},{num:'07',title:'Aceleradores de cierre',sub:'Urgencia, valor extra y escasez real'},{num:'08',title:'Manual de objeciones',sub:'Respuestas listas para las más frecuentes'},{num:'09',title:'Cierre de transición',sub:'Para mover la conversación a la decisión'},{num:'10',title:'Guión de llamada',sub:'Script completo para llamada de seguimiento'}];
-let completedCount=0;
-const moduleTexts={};
-
-// ===== LOCALSTORAGE #1 =====
+const MODULES=[{num:'01',title:'Mensaje de recepción',sub:'Primer contacto cálido'},{num:'02',title:'Seguimiento en visto',sub:'Rescate con valor, no con presión'},{num:'03',title:'Preguntas filtro',sub:'Para calificar al cliente'},{num:'04',title:'Micro acuerdos',sub:'Que diga sí antes del precio'},{num:'05',title:'Propuesta adaptada',sub:'Sin dar precio frío'},{num:'06',title:'Mensaje post reunión',sub:'Resumen + decisión natural'},{num:'07',title:'Aceleradores de cierre',sub:'Urgencia, valor y escasez'},{num:'08',title:'Manual de objeciones',sub:'Respuestas para las frecuentes'},{num:'09',title:'Cierre de transición',sub:'Mover a la decisión'},{num:'10',title:'Guión de llamada',sub:'Script completo de llamada'}];
+let completedCount=0;const moduleTexts={};
 const LS_KEY='atajo_last_system';
-function saveToLocalStorage(){
-  const saved={state:Object.assign({},state),texts:Object.assign({},moduleTexts),date:new Date().toLocaleDateString('es-AR'),ts:Date.now()};
-  try{localStorage.setItem(LS_KEY,JSON.stringify(saved));}catch(e){}
-}
-function loadLastSystem(){
-  try{
-    const raw=localStorage.getItem(LS_KEY);
-    if(!raw)return;
-    const saved=JSON.parse(raw);
-    Object.assign(state,saved.state);
-    Object.assign(moduleTexts,saved.texts);
-    document.getElementById('lastSystemBanner').style.display='none';
-    document.getElementById('hero').style.display='none';
-    document.getElementById('formSection').style.display='none';
-    document.getElementById('resultsSection').style.display='block';
-    completedCount=Object.keys(saved.texts).length;
-    renderModules();
-    MODULES.forEach((_,i)=>{
-      const idx=i+1;
-      if(moduleTexts[idx]){
-        setStatus(idx,'done');
-        const contentEl=document.getElementById('mct'+idx);
-        contentEl.className='module-content-inner';
-        contentEl.innerHTML=renderMd(moduleTexts[idx]);
-        document.getElementById('mca-btns'+idx).style.display='flex';
-      }
-    });
-    const pct=(completedCount/10)*100;
-    document.getElementById('genBarFill').style.width=pct+'%';
-    document.getElementById('genCount').textContent=completedCount+' / 10';
-    document.getElementById('genStatusText').textContent='✅ Sistema cargado desde tu última sesión';
-    document.getElementById('resultsSubtitle').textContent='Tu sistema guardado. Podés reescribir cualquier módulo con IA.';
-    document.getElementById('resultsActions').style.display='flex';
-    if(completedCount>0) document.getElementById('mc1').classList.add('open');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(e){}
-}
-function clearLastSystem(){
-  localStorage.removeItem(LS_KEY);
-  document.getElementById('lastSystemBanner').style.display='none';
-}
-function checkLastSystem(){
-  try{
-    const raw=localStorage.getItem(LS_KEY);
-    if(!raw)return;
-    const saved=JSON.parse(raw);
-    if(!saved.texts||Object.keys(saved.texts).length===0)return;
-    const name=saved.state&&saved.state.whatYouSell?saved.state.whatYouSell.substring(0,40)+'...':'tu negocio';
-    document.getElementById('lastSystemName').textContent=name;
-    document.getElementById('lastSystemDate').textContent='generado el '+saved.date;
-    document.getElementById('lastSystemBanner').style.display='flex';
-  }catch(e){}
-}
-
-// ===== FORM LOGIC =====
+function saveToLS(){const d={state:Object.assign({},state),texts:Object.assign({},moduleTexts),date:new Date().toLocaleDateString('es-AR')};try{localStorage.setItem(LS_KEY,JSON.stringify(d));}catch(e){}}
+function loadLastSystem(){try{const raw=localStorage.getItem(LS_KEY);if(!raw)return;const saved=JSON.parse(raw);Object.assign(state,saved.state);Object.assign(moduleTexts,saved.texts);document.getElementById('lastSystemBanner').style.display='none';document.getElementById('hero').style.display='none';document.getElementById('formSection').style.display='none';document.getElementById('resultsSection').style.display='block';completedCount=Object.keys(saved.texts).length;renderModules();MODULES.forEach((_,i)=>{const idx=i+1;if(moduleTexts[idx]){setStatus(idx,'done');const el=document.getElementById('mct'+idx);el.className='module-content-inner';el.innerHTML=renderMd(moduleTexts[idx]);document.getElementById('mca-btns'+idx).style.display='flex';}});const pct=(completedCount/10)*100;document.getElementById('genBarFill').style.width=pct+'%';document.getElementById('genCount').textContent=completedCount+' / 10';document.getElementById('genStatusText').textContent='✅ Sistema guardado cargado';document.getElementById('resultsSubtitle').textContent='Tu sistema guardado. Podés reescribir cualquier módulo con IA.';document.getElementById('resultsActions').style.display='flex';if(completedCount>0)document.getElementById('mc1').classList.add('open');window.scrollTo({top:0,behavior:'smooth'});}catch(e){}}
+function clearLastSystem(){localStorage.removeItem(LS_KEY);document.getElementById('lastSystemBanner').style.display='none';}
+function checkLastSystem(){try{const raw=localStorage.getItem(LS_KEY);if(!raw)return;const saved=JSON.parse(raw);if(!saved.texts||!Object.keys(saved.texts).length)return;const name=saved.state&&saved.state.whatYouSell?saved.state.whatYouSell.substring(0,40)+'...':'tu negocio';document.getElementById('lastSystemName').textContent=name;document.getElementById('lastSystemDate').textContent='generado el '+saved.date;document.getElementById('lastSystemBanner').style.display='flex';}catch(e){}}
 function startForm(){document.getElementById('hero').style.display='none';document.getElementById('formSection').style.display='block';window.scrollTo({top:0,behavior:'smooth'});}
 function startOver(){completedCount=0;Object.keys(moduleTexts).forEach(k=>delete moduleTexts[k]);document.getElementById('resultsSection').style.display='none';document.getElementById('resultsActions').style.display='none';document.getElementById('hero').style.display='grid';checkLastSystem();window.scrollTo({top:0,behavior:'smooth'});}
 function selectOpt(key,val,el){state[key]=val;el.parentElement.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('selected'));el.classList.add('selected');}
@@ -375,203 +298,25 @@ function toggleCheck(el){el.classList.toggle('selected');}
 function getChecked(cid){return Array.from(document.querySelectorAll('#'+cid+' .checkbox-item.selected .checkbox-text')).map(e=>e.textContent.trim());}
 function showStep(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById('step'+n).classList.add('active');document.getElementById('progressFill').style.width=(n*20)+'%';window.scrollTo({top:0,behavior:'smooth'});}
 function prevStep(cur){showStep(cur-1);}
-function nextStep(n){
-  const errEl=document.getElementById('err'+n);errEl.classList.remove('show');
-  if(n===1){state.responseTime=document.getElementById('responseTime').value;state.weeklyLeads=document.getElementById('weeklyLeads').value;state.mainProblems=getChecked('mainProblems');if(!state.who||!state.responseTime||!state.weeklyLeads){errEl.classList.add('show');return;}}
-  else if(n===2){state.whatYouSell=document.getElementById('whatYouSell').value.trim();state.targetClient=document.getElementById('targetClient').value.trim();state.priceRange=document.getElementById('priceRange').value.trim();if(!state.whatYouSell||!state.targetClient||!state.priceRange){errEl.classList.add('show');return;}}
-  else if(n===3){state.decisionTime=document.getElementById('decisionTime').value;state.closingMethod=getChecked('closingMethods');if(!state.source||!state.decisionTime){errEl.classList.add('show');return;}}
-  else if(n===4){state.diferencial=document.getElementById('diferencial').value.trim();state.objections=document.getElementById('objections').value.trim();if(!state.tone||!state.diferencial||!state.objections){errEl.classList.add('show');return;}}
-  showStep(n+1);
-}
-
-// ===== MARKDOWN =====
-function renderMd(text){
-  if(!text)return'';
-  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-  .replace(/^#{3} (.+)$/gm,'<h3>$1<\/h3>').replace(/^#{2} (.+)$/gm,'<h2>$1<\/h2>').replace(/^# (.+)$/gm,'<h1>$1<\/h1>')
-  .replace(/\*\*(.+?)\*\*/g,'<strong>$1<\/strong>').replace(/\*(.+?)\*/g,'<em>$1<\/em>')
-  .replace(/^---$/gm,'<hr>').replace(/^> (.+)$/gm,'<blockquote>$1<\/blockquote>')
-  .replace(/^- (.+)$/gm,'<li>$1<\/li>').replace(/^\d+\. (.+)$/gm,'<li>$1<\/li>')
-  .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&<\/ul>')
-  .replace(/```[\w]*\n?([\s\S]*?)```/g,'<div style="background:#0d1a0d;border-left:3px solid #c6f135;padding:10px 14px;margin:10px 0;font-family:monospace;font-size:13px;white-space:pre-wrap;color:#c6f135;border-radius:2px">$1<\/div>')
-  .replace(/`([^`\n]+?)`/g,'<code>$1<\/code>')
-  .replace(/\n\n/g,'<\/p><p>').replace(/\n/g,'<br>');
-}
-
-// ===== BUILD CONTEXT =====
-function buildBaseContext(){
-  const problems=state.mainProblems.length?state.mainProblems.join(', '):'ninguno';
-  const closing=state.closingMethod.length?state.closingMethod.join(', '):'no especificado';
-  return 'NEGOCIO: '+state.whatYouSell+'\nCLIENTE IDEAL: '+state.targetClient+'\nPRECIO: '+state.priceRange+'\nTONO: '+state.tone+'\nQUIÉN ATIENDE: '+state.who+' | RESPUESTA: '+state.responseTime+' | CONSULTAS/SEM: '+state.weeklyLeads+'\nCANAL: '+state.source+' | CIERRE: '+closing+' | DECISIÓN: '+state.decisionTime+'\nDIFERENCIAL: '+state.diferencial+'\nOBJECIONES: '+state.objections+'\nRESULTADOS: '+state.results+'\nPROBLEMAS: '+problems+'\nEXTRA: '+(state.extra||'ninguna');
-}
-function buildPrompt(n,extra){
-  const ctx=buildBaseContext();
-  const base='Eres experto en ventas por WhatsApp. Respondé DIRECTAMENTE con el contenido del módulo solicitado. NO hagas preguntas, NO ofrezcas más módulos, NO pidas confirmación.\nDatos del negocio:\n'+ctx+'\n\n';
-  const extraInstr=extra?'\nINSTRUCCIÓN ESPECIAL DEL USUARIO: '+extra+'. Aplicá esta instrucción al reescribir el módulo.':'';
-  const prompts={
-    1:base+'Crea el MÓDULO 1 — MENSAJE DE RECEPCIÓN. Primer mensaje al recibir consulta. Humano y cálido. 3 mensajes cortos listos para WhatsApp.'+extraInstr,
-    2:base+'Crea el MÓDULO 2 — SEGUIMIENTO EN VISTO. 3 mensajes cuando el cliente no responde. M1(día 1) valor suave, M2(día 3) nuevo ángulo, M3(semana 1) cierre amigable.'+extraInstr,
-    3:base+'Crea el MÓDULO 3 — PREGUNTAS FILTRO. 6 preguntas SPIN para calificar y generar interés. Lista numerada, preguntas directas.'+extraInstr,
-    4:base+'Crea el MÓDULO 4 — MICRO ACUERDOS. 5 validaciones antes de mostrar el precio. Por cada una: situación + mensaje exacto.'+extraInstr,
-    5:base+'Crea el MÓDULO 5 — PROPUESTA ADAPTADA. Cómo presentar el precio. Puente de valor + 3 formas según perfil del cliente + mensaje post-propuesta.'+extraInstr,
-    6:base+'Crea el MÓDULO 6 — MENSAJE POST REUNIÓN. 2 versiones: reunión muy bien / cliente indeciso. Resumen + valor + pedido de decisión natural.'+extraInstr,
-    7:base+'Crea el MÓDULO 7 — ACELERADORES DE CIERRE. 3 estrategias: urgencia real / valor extra / escasez. Mensaje exacto para cada uno.'+extraInstr,
-    8:base+'Las objeciones son: '+state.objections+'. Crea el MÓDULO 8 — MANUAL DE OBJECIONES. Por cada objeción: por qué la dice + respuesta que desarma + mensaje WhatsApp.'+extraInstr,
-    9:base+'Crea el MÓDULO 9 — CIERRE DE TRANSICIÓN. 4 mensajes: proponer reunión desde chat / pedir decisión directa / casi decididos / rescate 30 días.'+extraInstr,
-    10:base+'Crea el MÓDULO 10 — GUIÓN DE LLAMADA. Script completo: 1)Apertura 2)Rapport 3)Sondeo SPIN 4)Valor 5)Objeciones 6)Pedido decisión 7)Cierre. Texto exacto con indicaciones.'+extraInstr
-  };
-  return prompts[n];
-}
-
-// ===== API =====
-async function callModuleAPI(n,extra){
-  const resp=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:buildPrompt(n,extra),module:n})});
-  if(!resp.ok){const t=await resp.text();throw new Error('Error '+resp.status+': '+t.substring(0,150));}
-  const data=await resp.json();
-  if(data.error)throw new Error(data.error);
-  return data.result||'';
-}
-
-// ===== RENDER =====
-function renderModules(){
-  const grid=document.getElementById('modulesGrid');
-  grid.innerHTML=MODULES.map((m,i)=>{
-    const idx=i+1;
-    return '<div class="module-card" id="mc'+idx+'">'
-    +'<div class="module-card-header" onclick="toggleModule('+idx+')">'
-    +'<span class="mc-num">'+m.num+'<\/span>'
-    +'<div class="mc-title"><div class="mc-title-main">'+m.title+'<\/div><div class="mc-title-sub">'+m.sub+'<\/div><\/div>'
-    +'<span class="mc-status pending" id="mcs'+idx+'">PENDIENTE<\/span>'
-    +'<span class="mc-arrow" id="mca'+idx+'">▼<\/span>'
-    +'<\/div>'
-    +'<div class="module-content" id="mcc'+idx+'">'
-    +'<div class="module-content-inner loading-text" id="mct'+idx+'">Generando<span class="typing-cursor"><\/span><\/div>'
-    +'<div class="module-actions" id="mca-btns'+idx+'" style="display:none">'
-    +'<button class="copy-btn" onclick="copyModule('+idx+')">COPIAR<\/button>'
-    +'<button class="rewrite-btn" onclick="toggleRewrite('+idx+')">✏ REESCRIBIR<\/button>'
-    +'<\/div>'
-    +'<div class="rewrite-panel" id="rwp'+idx+'">'
-    +'<span class="rewrite-label">¿Cómo querés que lo reescriba?<\/span>'
-    +'<input class="rewrite-input" id="rwi'+idx+'" placeholder="Ej: más directo, cambiá el tono a informal, agregá más urgencia..." />'
-    +'<div class="rewrite-btns">'
-    +'<button class="btn-do-rewrite" id="rwbtn'+idx+'" onclick="doRewrite('+idx+')">REESCRIBIR CON IA →<\/button>'
-    +'<button class="btn-cancel-rewrite" onclick="toggleRewrite('+idx+')">CANCELAR<\/button>'
-    +'<\/div><\/div>'
-    +'<\/div><\/div>';
-  }).join('');
-}
+function nextStep(n){const errEl=document.getElementById('err'+n);errEl.classList.remove('show');if(n===1){state.responseTime=document.getElementById('responseTime').value;state.weeklyLeads=document.getElementById('weeklyLeads').value;state.mainProblems=getChecked('mainProblems');if(!state.who||!state.responseTime||!state.weeklyLeads){errEl.classList.add('show');return;}}else if(n===2){state.whatYouSell=document.getElementById('whatYouSell').value.trim();state.targetClient=document.getElementById('targetClient').value.trim();state.priceRange=document.getElementById('priceRange').value.trim();if(!state.whatYouSell||!state.targetClient||!state.priceRange){errEl.classList.add('show');return;}}else if(n===3){state.decisionTime=document.getElementById('decisionTime').value;state.closingMethod=getChecked('closingMethods');if(!state.source||!state.decisionTime){errEl.classList.add('show');return;}}else if(n===4){state.diferencial=document.getElementById('diferencial').value.trim();state.objections=document.getElementById('objections').value.trim();if(!state.tone||!state.diferencial||!state.objections){errEl.classList.add('show');return;}}showStep(n+1);}
+function renderMd(t){if(!t)return'';const L='\x3C',R='\x3C/';return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/^#{3} (.+)$/gm,L+'h3>$1'+R+'h3>').replace(/^#{2} (.+)$/gm,L+'h2>$1'+R+'h2>').replace(/^# (.+)$/gm,L+'h1>$1'+R+'h1>').replace(/\*\*(.+?)\*\*/g,L+'strong>$1'+R+'strong>').replace(/\*(.+?)\*/g,L+'em>$1'+R+'em>').replace(/^---$/gm,L+'hr>').replace(/^> (.+)$/gm,L+'blockquote>$1'+R+'blockquote>').replace(/^- (.+)$/gm,L+'li>$1'+R+'li>').replace(/^\d+\. (.+)$/gm,L+'li>$1'+R+'li>').replace(/\n\n/g,R+'p>'+L+'p>').replace(/\n/g,L+'br>');}
+function buildCtx(){const pr=state.mainProblems.length?state.mainProblems.join(', '):'ninguno';const cl=state.closingMethod.length?state.closingMethod.join(', '):'no especificado';return 'NEGOCIO: '+state.whatYouSell+'\nCLIENTE: '+state.targetClient+'\nPRECIO: '+state.priceRange+'\nTONO: '+state.tone+'\nATIENDE: '+state.who+' | RESP: '+state.responseTime+' | CONS/SEM: '+state.weeklyLeads+'\nCANAL: '+state.source+' | CIERRE: '+cl+' | DECISIÓN: '+state.decisionTime+'\nDIFERENCIAL: '+state.diferencial+'\nOBJECIONES: '+state.objections+'\nRESULTADOS: '+state.results+'\nPROBLEMAS: '+pr+'\nEXTRA: '+(state.extra||'ninguna');}
+function buildPrompt(n,xi){const ctx=buildCtx();const base='Eres experto en ventas por WhatsApp. Respond\xE9 DIRECTAMENTE. NO hagas preguntas.\nDatos:\n'+ctx+'\n\n';const ex=xi?'\nINSTRUCCI\xD3N: '+xi:'';const p={1:base+'M\xD3DULO 1 - MENSAJE DE RECEPCI\xD3N. 3 mensajes cortos para WhatsApp.'+ex,2:base+'M\xD3DULO 2 - SEGUIMIENTO EN VISTO. 3 mensajes: d\xEDa 1/3/semana 1.'+ex,3:base+'M\xD3DULO 3 - PREGUNTAS FILTRO. 6 preguntas SPIN numeradas.'+ex,4:base+'M\xD3DULO 4 - MICRO ACUERDOS. 5 validaciones antes del precio.'+ex,5:base+'M\xD3DULO 5 - PROPUESTA ADAPTADA. Puente de valor + 3 formas seg\xFAn perfil.'+ex,6:base+'M\xD3DULO 6 - POST REUNI\xD3N. 2 versiones: bien/indeciso.'+ex,7:base+'M\xD3DULO 7 - ACELERADORES. 3: urgencia/valor extra/escasez.'+ex,8:base+'Objeciones: '+state.objections+'. M\xD3DULO 8 - MANUAL OBJECIONES.'+ex,9:base+'M\xD3DULO 9 - CIERRE TRANSICI\xD3N. 4 mensajes clave.'+ex,10:base+'M\xD3DULO 10 - GUI\xD3N LLAMADA. Script 7 partes.'+ex};return p[n];}
+async function callAPI(n,xi){const r=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:buildPrompt(n,xi),module:n})});if(!r.ok){const t=await r.text();throw new Error('Error '+r.status+': '+t.substring(0,150));}const d=await r.json();if(d.error)throw new Error(d.error);return d.result||'';}
+function renderModules(){const G=document.getElementById('modulesGrid');G.innerHTML=MODULES.map(function(m,i){const idx=i+1;const card=document.createElement('div');card.className='module-card';card.id='mc'+idx;const hdr=document.createElement('div');hdr.className='module-card-header';hdr.setAttribute('onclick','toggleModule('+idx+')');hdr.innerHTML='\x3Cspan class="mc-num">'+m.num+'\x3C/span>\x3Cdiv class="mc-title">\x3Cdiv class="mc-title-main">'+m.title+'\x3C/div>\x3Cdiv class="mc-title-sub">'+m.sub+'\x3C/div>\x3C/div>\x3Cspan class="mc-status pending" id="mcs'+idx+'">PENDIENTE\x3C/span>\x3Cspan class="mc-arrow">\u25BC\x3C/span>';const body=document.createElement('div');body.className='module-content';body.id='mcc'+idx;body.innerHTML='\x3Cdiv class="module-content-inner loading-text" id="mct'+idx+'">Generando\x3Cspan class="typing-cursor">\x3C/span>\x3C/div>\x3Cdiv class="module-actions" id="mca-btns'+idx+'" style="display:none">\x3Cbutton class="copy-btn" onclick="copyModule('+idx+')">COPIAR\x3C/button> \x3Cbutton class="rewrite-btn" onclick="toggleRewrite('+idx+')">\u270F REESCRIBIR\x3C/button>\x3C/div>\x3Cdiv class="rewrite-panel" id="rwp'+idx+'">\x3Cspan class="rewrite-label">\xBFC\xF3mo quer\xE9s que lo reescriba?\x3C/span>\x3Cinput class="rewrite-input" id="rwi'+idx+'" placeholder="Ej: m\xE1s directo, tono informal..." />\x3Cdiv class="rewrite-btns">\x3Cbutton class="btn-do-rewrite" id="rwbtn'+idx+'" onclick="doRewrite('+idx+')">REESCRIBIR CON IA \u2192\x3C/button> \x3Cbutton class="btn-cancel-rewrite" onclick="toggleRewrite('+idx+')">CANCELAR\x3C/button>\x3C/div>\x3C/div>';card.appendChild(hdr);card.appendChild(body);return card.outerHTML;}).join('');}
 function toggleModule(idx){document.getElementById('mc'+idx).classList.toggle('open');}
-function setStatus(idx,status){const el=document.getElementById('mcs'+idx);const labels={pending:'PENDIENTE',generating:'GENERANDO...',done:'LISTO ✓',error:'ERROR ↺'};el.className='mc-status '+status;el.textContent=labels[status]||status;}
-function updateProgress(){
-  completedCount++;
-  const pct=(completedCount/10)*100;
-  document.getElementById('genBarFill').style.width=pct+'%';
-  document.getElementById('genCount').textContent=completedCount+' / 10';
-  if(completedCount>=10){document.getElementById('genStatusText').textContent='✅ Sistema completo generado';document.getElementById('resultsSubtitle').textContent='Tu sistema listo. Hacé clic en cada módulo para ver el contenido o reescribirlo con IA.';document.getElementById('resultsActions').style.display='flex';saveToLocalStorage();}
-}
-function setModuleContent(idx,text){
-  moduleTexts[idx]=text;
-  const contentEl=document.getElementById('mct'+idx);
-  contentEl.className='module-content-inner';
-  contentEl.innerHTML=renderMd(text);
-  document.getElementById('mca-btns'+idx).style.display='flex';
-}
-
-// ===== REWRITE #2 =====
-function toggleRewrite(idx){
-  const panel=document.getElementById('rwp'+idx);
-  panel.classList.toggle('open');
-  if(panel.classList.contains('open')){
-    document.getElementById('mc'+idx).classList.add('open');
-    setTimeout(()=>document.getElementById('rwi'+idx).focus(),100);
-  }
-}
-async function doRewrite(idx){
-  const instruction=document.getElementById('rwi'+idx).value.trim();
-  if(!instruction){document.getElementById('rwi'+idx).focus();return;}
-  const btn=document.getElementById('rwbtn'+idx);
-  btn.textContent='REESCRIBIENDO...';btn.disabled=true;
-  setStatus(idx,'generating');
-  document.getElementById('mct'+idx).className='module-content-inner loading-text';
-  document.getElementById('mct'+idx).innerHTML='Reescribiendo con tu instrucción<span class="typing-cursor"><\/span>';
-  try{
-    const result=await callModuleAPI(idx,instruction);
-    setModuleContent(idx,result);
-    setStatus(idx,'done');
-    document.getElementById('rwp'+idx).classList.remove('open');
-    document.getElementById('rwi'+idx).value='';
-    saveToLocalStorage();
-  }catch(err){
-    document.getElementById('mct'+idx).className='module-content-inner';
-    document.getElementById('mct'+idx).textContent='Error: '+err.message;
-    setStatus(idx,'error');
-  }
-  btn.textContent='REESCRIBIR CON IA →';btn.disabled=false;
-}
-
-// ===== COPY/DOWNLOAD =====
-function copyModule(idx){
-  const text=moduleTexts[idx]||document.getElementById('mct'+idx).textContent;
-  navigator.clipboard.writeText(text).then(()=>{const btn=event.target;btn.textContent='✓ COPIADO';setTimeout(()=>btn.textContent='COPIAR',2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
-}
-function copyAll(){
-  const allText=MODULES.map((m,i)=>{const idx=i+1;const text=moduleTexts[idx]||'(no generado)';return '=== MÓDULO '+m.num+': '+m.title.toUpperCase()+' ===\n\n'+text;}).join('\n\n'+'='.repeat(50)+'\n\n');
-  navigator.clipboard.writeText(allText).then(()=>{const btn=event.target;btn.textContent='✓ COPIADO TODO';setTimeout(()=>btn.textContent='COPIAR TODO',2000);}).catch(()=>{const ta=document.createElement('textarea');ta.value=allText;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);});
-}
-function downloadAll(){
-  const header='SISTEMA DE VENTAS POR WHATSAPP — ATAJO CREATIVO\n'+'='.repeat(50)+'\nNegocio: '+state.whatYouSell+'\nFecha: '+new Date().toLocaleDateString('es-AR')+'\n'+'='.repeat(50)+'\n\n';
-  const allText=header+MODULES.map((m,i)=>{const idx=i+1;const text=moduleTexts[idx]||'(no generado)';return '=== MÓDULO '+m.num+': '+m.title.toUpperCase()+' ===\n'+m.sub+'\n\n'+text;}).join('\n\n'+'='.repeat(50)+'\n\n');
-  const blob=new Blob([allText],{type:'text/plain;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='sistema-ventas-whatsapp.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-}
-
-// ===== GENERATE ALL =====
-async function generateModule(idx){
-  setStatus(idx,'generating');document.getElementById('mc'+idx).classList.add('open');
-  try{
-    const result=await callModuleAPI(idx);
-    setModuleContent(idx,result);setStatus(idx,'done');updateProgress();
-    document.getElementById('mc'+idx).classList.remove('open');
-    if(completedCount===1)document.getElementById('mc'+idx).classList.add('open');
-  }catch(err){
-    document.getElementById('mct'+idx).className='module-content-inner';
-    document.getElementById('mct'+idx).textContent='Error: '+err.message;
-    document.getElementById('mca-btns'+idx).style.display='flex';
-    document.getElementById('mca-btns'+idx).innerHTML='<button class="copy-btn" style="color:#f87171;border-color:#f87171" onclick="retryModule('+idx+')">REINTENTAR<\/button>';
-    setStatus(idx,'error');updateProgress();
-  }
-}
-async function retryModule(idx){
-  completedCount=Math.max(0,completedCount-1);
-  const pct=(completedCount/10)*100;
-  document.getElementById('genBarFill').style.width=pct+'%';
-  document.getElementById('genCount').textContent=completedCount+' / 10';
-  document.getElementById('mct'+idx).className='module-content-inner loading-text';
-  document.getElementById('mct'+idx).innerHTML='Reintentando<span class="typing-cursor"><\/span>';
-  document.getElementById('mca-btns'+idx).style.display='none';
-  if(completedCount<10){document.getElementById('genStatusText').textContent='⚡ Generando módulos en paralelo...';document.getElementById('resultsActions').style.display='none';}
-  await generateModule(idx);
-}
-async function generateAll(){
-  state.results=document.getElementById('results').value.trim();
-  state.extra=document.getElementById('extra').value.trim();
-  const errEl=document.getElementById('err5');
-  if(!state.results){errEl.classList.add('show');return;}
-  errEl.classList.remove('show');
-  const btn=document.getElementById('generateBtn');
-  btn.textContent='GENERANDO...';btn.disabled=true;
-  document.getElementById('formSection').style.display='none';
-  document.getElementById('resultsSection').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-  completedCount=0;Object.keys(moduleTexts).forEach(k=>delete moduleTexts[k]);
-  renderModules();
-  await Promise.allSettled(MODULES.map((_,i)=>generateModule(i+1)));
-  btn.textContent='GENERAR MI SISTEMA →';btn.disabled=false;
-}
-
-// ===== INIT =====
+function setStatus(idx,s){const el=document.getElementById('mcs'+idx);const lb={pending:'PENDIENTE',generating:'GENERANDO...',done:'LISTO \u2713',error:'ERROR \u21BA'};el.className='mc-status '+s;el.textContent=lb[s]||s;}
+function updateProgress(){completedCount++;const p=(completedCount/10)*100;document.getElementById('genBarFill').style.width=p+'%';document.getElementById('genCount').textContent=completedCount+' / 10';if(completedCount>=10){document.getElementById('genStatusText').textContent='\u2705 Sistema completo generado';document.getElementById('resultsSubtitle').textContent='Tu sistema listo. Pod\xE9s reescribir cualquier m\xF3dulo con IA.';document.getElementById('resultsActions').style.display='flex';saveToLS();}}
+function setModuleContent(idx,text){moduleTexts[idx]=text;const el=document.getElementById('mct'+idx);el.className='module-content-inner';el.innerHTML=renderMd(text);document.getElementById('mca-btns'+idx).style.display='flex';}
+function toggleRewrite(idx){const p=document.getElementById('rwp'+idx);p.classList.toggle('open');if(p.classList.contains('open')){document.getElementById('mc'+idx).classList.add('open');setTimeout(function(){document.getElementById('rwi'+idx).focus();},100);}}
+async function doRewrite(idx){const ins=document.getElementById('rwi'+idx).value.trim();if(!ins){document.getElementById('rwi'+idx).focus();return;}const btn=document.getElementById('rwbtn'+idx);btn.textContent='REESCRIBIENDO...';btn.disabled=true;setStatus(idx,'generating');document.getElementById('mct'+idx).className='module-content-inner loading-text';document.getElementById('mct'+idx).innerHTML='Reescribiendo...\x3Cspan class="typing-cursor">\x3C/span>';try{const result=await callAPI(idx,ins);setModuleContent(idx,result);setStatus(idx,'done');document.getElementById('rwp'+idx).classList.remove('open');document.getElementById('rwi'+idx).value='';saveToLS();}catch(err){document.getElementById('mct'+idx).className='module-content-inner';document.getElementById('mct'+idx).textContent='Error: '+err.message;setStatus(idx,'error');}btn.textContent='REESCRIBIR CON IA \u2192';btn.disabled=false;}
+function copyModule(idx){const text=moduleTexts[idx]||document.getElementById('mct'+idx).textContent;navigator.clipboard.writeText(text).then(function(){const b=event.target;b.textContent='\u2713 COPIADO';setTimeout(function(){b.textContent='COPIAR';},2000);});}
+function copyAll(){const t=MODULES.map(function(m,i){const idx=i+1;return '=== M\xD3DULO '+m.num+': '+m.title.toUpperCase()+' ===\n\n'+(moduleTexts[idx]||'(no generado)');}).join('\n\n'+'='.repeat(50)+'\n\n');navigator.clipboard.writeText(t).then(function(){const b=event.target;b.textContent='\u2713 COPIADO TODO';setTimeout(function(){b.textContent='COPIAR TODO';},2000);});}
+function downloadAll(){const h='SISTEMA DE VENTAS POR WHATSAPP\n'+'='.repeat(50)+'\nNegocio: '+state.whatYouSell+'\nFecha: '+new Date().toLocaleDateString('es-AR')+'\n'+'='.repeat(50)+'\n\n';const t=h+MODULES.map(function(m,i){const idx=i+1;return '=== M\xD3DULO '+m.num+': '+m.title.toUpperCase()+' ===\n'+m.sub+'\n\n'+(moduleTexts[idx]||'(no generado)');}).join('\n\n'+'='.repeat(50)+'\n\n');const b=new Blob([t],{type:'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='sistema-ventas-whatsapp.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);}
+async function generateModule(idx){setStatus(idx,'generating');document.getElementById('mc'+idx).classList.add('open');try{const r=await callAPI(idx);setModuleContent(idx,r);setStatus(idx,'done');updateProgress();document.getElementById('mc'+idx).classList.remove('open');if(completedCount===1)document.getElementById('mc'+idx).classList.add('open');}catch(err){document.getElementById('mct'+idx).className='module-content-inner';document.getElementById('mct'+idx).textContent='Error: '+err.message;document.getElementById('mca-btns'+idx).style.display='flex';document.getElementById('mca-btns'+idx).innerHTML='\x3Cbutton class="copy-btn" style="color:#f87171;border-color:#f87171" onclick="retryModule('+idx+')">REINTENTAR\x3C/button>';setStatus(idx,'error');updateProgress();}}
+async function retryModule(idx){completedCount=Math.max(0,completedCount-1);const p=(completedCount/10)*100;document.getElementById('genBarFill').style.width=p+'%';document.getElementById('genCount').textContent=completedCount+' / 10';document.getElementById('mct'+idx).className='module-content-inner loading-text';document.getElementById('mct'+idx).innerHTML='Reintentando\x3Cspan class="typing-cursor">\x3C/span>';document.getElementById('mca-btns'+idx).style.display='none';if(completedCount<10){document.getElementById('genStatusText').textContent='\u26A1 Generando...';document.getElementById('resultsActions').style.display='none';}await generateModule(idx);}
+async function generateAll(){state.results=document.getElementById('results').value.trim();state.extra=document.getElementById('extra').value.trim();const errEl=document.getElementById('err5');if(!state.results){errEl.classList.add('show');return;}errEl.classList.remove('show');const btn=document.getElementById('generateBtn');btn.textContent='GENERANDO...';btn.disabled=true;document.getElementById('formSection').style.display='none';document.getElementById('resultsSection').style.display='block';window.scrollTo({top:0,behavior:'smooth'});completedCount=0;Object.keys(moduleTexts).forEach(k=>delete moduleTexts[k]);renderModules();await Promise.allSettled(MODULES.map(function(_,i){return generateModule(i+1);}));btn.textContent='GENERAR MI SISTEMA \u2192';btn.disabled=false;}
 checkLastSystem();
-<\/script>
+</script>
 </body>
 </html>
