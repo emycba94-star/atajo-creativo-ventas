@@ -420,7 +420,7 @@ function renderMd(text){
     .replace(/^- (.+)$/gm,'<li>$1</li>')
     .replace(/^\d+\. (.+)$/gm,'<li>$1</li>')
     .replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>')
-    .replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/```[\w]*\n?([\s\S]*?)```/g,'<div style="background:#0d1a0d;border-left:3px solid #c6f135;padding:10px 14px;margin:10px 0;font-family:monospace;font-size:13px;white-space:pre-wrap;color:#c6f135;border-radius:2px">$1<\/div>').replace(/`([^`\n]+?)`/g,'<code>$1<\/code>')
     .replace(/\n\n/g,'</p><p>')
     .replace(/\n/g,'<br>')
     .replace(/^(?!<[hbuclo]|<\/[hbuclo])(.+)$/gm,'<p>$1</p>');
@@ -445,7 +445,7 @@ INFO EXTRA: ${state.extra||'ninguna'}`;
 
 function buildPrompt(n){
   const ctx = buildBaseContext();
-  const base = `Eres experto en ventas por WhatsApp y comunicación comercial. Datos del negocio:\n${ctx}\n\n`;
+  const base = `Eres experto en ventas por WhatsApp. Respondé DIRECTAMENTE con el contenido del módulo solicitado. NO hagas preguntas, NO ofrezcas más módulos, NO pidas confirmación. Datos del negocio:\n${ctx}\n\n`;
   const prompts = {
     1: base+`Crea el MÓDULO 1 — MENSAJE DE RECEPCIÓN para este negocio. Primer mensaje al recibir una consulta. Debe sonar humano y cálido. Incluí: saludo personalizado, bienvenida breve, pregunta que genera curiosidad. Máximo 3 mensajes cortos listos para copiar en WhatsApp.`,
     2: base+`Crea el MÓDULO 2 — SEGUIMIENTO EN VISTO. Secuencia de 3 mensajes para cuando el cliente no responde. No presionar, rescatar con valor. M1 (día 1): recordatorio suave con valor. M2 (día 3): nuevo ángulo. M3 (semana 1): cierre amigable. Mensajes listos para copiar.`,
