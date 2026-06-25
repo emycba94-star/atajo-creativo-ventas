@@ -1640,5 +1640,68 @@ var _t0=Date.now();
 window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Math.round((Date.now()-_t0)/1000)});});
 })();
 </script>
-</body>
+
+<!-- EMAIL GATE — captura leads antes de mostrar resultado -->
+<div id="norden-email-gate" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#111;border:1px solid #333;border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,0.6)">
+    <div style="width:56px;height:56px;background:linear-gradient(135deg,#c6f135,#8bc200);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px">&#x1F680;</div>
+    <h2 style="color:#fff;font-size:22px;font-weight:700;margin-bottom:8px">Tu sistema est&#225; listo</h2>
+    <p style="color:#888;font-size:14px;line-height:1.6;margin-bottom:24px">Ingres&#225; tu email para recibir tu sistema de ventas personalizado + recursos exclusivos de cierre.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <input id="neg-email-input" type="email" placeholder="tu@email.com" autocomplete="email" style="width:100%;padding:14px 16px;background:#1a1a1a;border:1.5px solid #333;border-radius:10px;color:#fff;font-size:15px;outline:none;transition:border-color .2s;box-sizing:border-box" onfocus="this.style.borderColor='#c6f135'" onblur="this.style.borderColor='#333'">
+      <button onclick="nordenEmailSubmit()" style="width:100%;padding:14px;background:linear-gradient(135deg,#c6f135,#8bc200);color:#0d0d0d;font-weight:700;font-size:15px;border:none;border-radius:10px;cursor:pointer;letter-spacing:.5px">VER MI SISTEMA DE VENTAS &#x2192;</button>
+      <button onclick="nordenEmailSkip()" style="background:none;border:none;color:#555;font-size:13px;cursor:pointer;padding:4px">Continuar sin guardar</button>
+    </div>
+    <p style="color:#444;font-size:11px;margin-top:16px">Sin spam. Solo recursos de ventas de valor.</p>
+  </div>
+</div>
+
+<script id="norden-email-gate-js">
+(function(){
+  function nordenSaveEmail(email){
+    try{
+      const leads = JSON.parse(localStorage.getItem("neg_leads")||"[]");
+      if(!leads.includes(email)){ leads.push(email); localStorage.setItem("neg_leads", JSON.stringify(leads)); }
+      localStorage.setItem("neg_email", email);
+      localStorage.setItem("neg_email_ts", Date.now().toString());
+    }catch(e){}
+  }
+  window.nordenEmailSubmit = function(){
+    const input = document.getElementById("neg-email-input");
+    const email = (input ? input.value : "").trim();
+    if(!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)){
+      if(input){ input.style.borderColor="#ff4444"; input.focus(); } return;
+    }
+    nordenSaveEmail(email);
+    if(typeof gtag==="function") gtag("event","email_captured",{email_domain: email.split("@")[1]});
+    const gate = document.getElementById("norden-email-gate");
+    if(gate) gate.style.display="none";
+    if(window._nordenPendingGenerate) window._nordenPendingGenerate();
+  };
+  window.nordenEmailSkip = function(){
+    const gate = document.getElementById("norden-email-gate");
+    if(gate) gate.style.display="none";
+    if(window._nordenPendingGenerate) window._nordenPendingGenerate();
+  };
+  window.nordenShowEmailGate = function(callback){
+    const cached = localStorage.getItem("neg_email");
+    if(cached){ if(callback) callback(); return; }
+    window._nordenPendingGenerate = callback;
+    const gate = document.getElementById("norden-email-gate");
+    if(gate){ gate.style.display="flex"; } else { if(callback) callback(); }
+  };
+  document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("click", function(e){
+      const btn = e.target.closest("button, .btn");
+      if(!btn) return;
+      const txt = (btn.textContent||"").trim().toUpperCase();
+      if((txt.includes("GENERAR") && txt.includes("SISTEMA")) || txt === "GENERAR MI SISTEMA DE VENTAS"){
+        if(localStorage.getItem("neg_email")) return;
+        e.stopImmediatePropagation(); e.preventDefault();
+        window.nordenShowEmailGate(function(){ setTimeout(function(){ btn.click(); }, 100); });
+      }
+    }, true);
+  });
+})();
+</script></body>
   </html>
