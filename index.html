@@ -1641,6 +1641,27 @@ window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Ma
 })();
 </script>
 
+<!-- FREEMIUM GATE — modal upgrade plan Pro -->
+<div id="norden-freemium-gate" style="display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0.9);backdrop-filter:blur(16px);align-items:center;justify-content:center;padding:20px">
+  <div style="background:linear-gradient(135deg,#111 0%,#1a1a0a 100%);border:1px solid #c6f13540;border-radius:24px;padding:40px 32px;max-width:440px;width:100%;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,0.7)">
+    <div style="display:inline-block;background:linear-gradient(135deg,#c6f135,#8bc200);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:#0d0d0d;letter-spacing:2px;margin-bottom:20px">PLAN PRO</div>
+    <h2 style="color:#fff;font-size:24px;font-weight:700;margin-bottom:12px;line-height:1.3">Desbloqu&#233; los <span style="color:#c6f135">m&#243;dulos completos</span> de tu sistema</h2>
+    <p style="color:#888;font-size:14px;line-height:1.6;margin-bottom:24px">Ya usaste tus 3 generaciones gratuitas. Pas&#225; al Plan Pro y accede a todos los m&#243;dulos ilimitados, PDF premium y soporte prioritario.</p>
+    <div style="background:#0d0d0d;border-radius:12px;padding:20px;margin-bottom:24px;text-align:left">
+      <div style="color:#c6f135;font-weight:700;font-size:13px;margin-bottom:12px;letter-spacing:1px">QU&#201; INCLU&#205;E EL PLAN PRO:</div>
+      <div style="color:#ccc;font-size:13px;line-height:2">
+        <div>&#x2705; M&#243;dulos ilimitados</div>
+        <div>&#x2705; Export PDF premium</div>
+        <div>&#x2705; Coach IA sin l&#237;mites</div>
+        <div>&#x2705; 30 d&#237;as de soporte</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onclick="nordenFreemiumUpgrade()" style="width:100%;padding:16px;background:linear-gradient(135deg,#c6f135,#8bc200);color:#0d0d0d;font-weight:700;font-size:16px;border:none;border-radius:12px;cursor:pointer;letter-spacing:.5px">&#x1F680; OBTENER PLAN PRO — $9.99/mes</button>
+      <button onclick="nordenFreemiumClose()" style="background:none;border:1px solid #333;color:#555;font-size:13px;cursor:pointer;padding:10px;border-radius:8px">Seguir con plan gratuito (3 m&#243;dulos)</button>
+    </div>
+  </div>
+</div>
 <!-- EMAIL GATE — captura leads antes de mostrar resultado -->
 <div id="norden-email-gate" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px">
   <div style="background:#111;border:1px solid #333;border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,0.6)">
@@ -1708,6 +1729,55 @@ window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Ma
         window.nordenShowEmailGate(function(){setTimeout(function(){b.click();},120);});
       }
     },true);
+  });
+})();
+</script>
+<script id="norden-freemium-js">
+(function(){
+  var FREE_LIMIT = 3;
+  function neg_getCount(){return parseInt(localStorage.getItem("neg_gen_count")||"0",10);}
+  function neg_incCount(){var n=neg_getCount()+1;localStorage.setItem("neg_gen_count",n+"");return n;}
+  window.nordenFreemiumUpgrade = function(){
+    // Redirect to pricing section or external checkout
+    var gate = document.getElementById("norden-freemium-gate");
+    if(gate) gate.style.display="none";
+    var pricingEl = document.getElementById("pricing");
+    if(pricingEl){pricingEl.scrollIntoView({behavior:"smooth"});}
+    if(typeof gtag==="function") gtag("event","upgrade_click",{source:"freemium_gate"});
+  };
+  window.nordenFreemiumClose = function(){
+    var gate = document.getElementById("norden-freemium-gate");
+    if(gate) gate.style.display="none";
+  };
+  window.nordenCheckFreemium = function(callback){
+    var count = neg_getCount();
+    if(count >= FREE_LIMIT){
+      // Check if pro user
+      var isPro = localStorage.getItem("neg_is_pro") === "1";
+      if(isPro){ if(callback) callback(); return; }
+      // Show upgrade gate
+      var gate = document.getElementById("norden-freemium-gate");
+      if(gate){ gate.style.display="flex"; }
+      if(typeof gtag==="function") gtag("event","freemium_gate_shown",{count:count});
+      return; // block generation
+    }
+    // Increment and proceed
+    neg_incCount();
+    if(callback) callback();
+  };
+  // Show remaining uses badge
+  document.addEventListener("DOMContentLoaded", function(){
+    var count = neg_getCount();
+    var remaining = Math.max(0, FREE_LIMIT - count);
+    if(remaining <= FREE_LIMIT && count > 0){
+      var btn = document.getElementById("generateBtn");
+      if(btn && remaining > 0){
+        var badge = document.createElement("span");
+        badge.style.cssText = "margin-left:8px;background:rgba(0,0,0,0.3);border-radius:4px;padding:2px 6px;font-size:11px;";
+        badge.textContent = remaining + " restantes";
+        btn.appendChild(badge);
+      }
+    }
   });
 })();
 </script></body>
