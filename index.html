@@ -722,6 +722,7 @@ body{padding-top:56px!important}
 <label class="field-label">¿Qué te hace diferente de la competencia?</label>
 <textarea class="form-textarea" id="diferencial" placeholder="Ej: Entrego en 48hs, revisiones ilimitadas, 5 años de experiencia..."></textarea>
 <label class="field-label">¿Cuáles son las 3 objeciones más comunes?</label>
+<div id="norden-obj-chips" class="norden-chips-container" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px;"><button type="button" class="norden-chip" onclick="nordenAddObj(this)">Es muy caro</button><button type="button" class="norden-chip" onclick="nordenAddObj(this)">Lo tengo que pensar</button><button type="button" class="norden-chip" onclick="nordenAddObj(this)">Ya tengo alguien</button><button type="button" class="norden-chip" onclick="nordenAddObj(this)">No es el momento</button><button type="button" class="norden-chip" onclick="nordenAddObj(this)">Mandáme info</button><button type="button" class="norden-chip" onclick="nordenAddObj(this)">Lo consulto</button></div>
 <textarea class="form-textarea" id="objections" placeholder="Ej: 'Es muy caro', 'Lo tengo que pensar', 'Ya tengo alguien'..."></textarea>
 <div class="error-msg" id="err4">Seleccióná tu tono y completá diferencial y objeciones.</div>
 <div class="nav-buttons"><button class="btn-back" onclick="prevStep(4)">← ATRÁS</button><button class="btn-next" onclick="nextStep(4)">SIGUIENTE →</button></div>
@@ -1505,6 +1506,59 @@ document.addEventListener("click",function(e){
 });
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){injectStepDots();applySkeleton();});}
 else{injectStepDots();applySkeleton();}
+})();
+</script>
+<style id="norden-fase3-css">
+.norden-chip{background:#1a1a1a;border:1px solid #333;color:#ccc;padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s;font-family:inherit;}
+.norden-chip:hover,.norden-chip.selected{background:var(--green);border-color:var(--green);color:#000;font-weight:700;}
+#norden-success-screen{display:none;position:fixed;inset:0;background:#0a0a0a;z-index:9000;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;}
+#norden-success-screen.show{display:flex;}
+.norden-success-icon{font-size:72px;animation:norden-bounce .6s ease;margin-bottom:24px;}
+@keyframes norden-bounce{0%{transform:scale(0)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.norden-success-title{font-size:clamp(28px,5vw,48px);font-weight:900;color:#fff;text-transform:uppercase;line-height:1.1;margin-bottom:16px;}
+.norden-success-title span{color:var(--green);}
+.norden-success-sub{color:#888;font-size:15px;max-width:440px;margin-bottom:32px;}
+.norden-success-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:14px 32px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;text-transform:uppercase;}
+</style>
+<script id="norden-fase3-ux">
+(function(){
+window.nordenAddObj=function(btn){
+  var ta=document.getElementById("objections");if(!ta)return;
+  var txt=btn.textContent.trim();
+  var arr=ta.value.trim()?ta.value.trim().split(",").map(function(s){return s.trim();}).filter(Boolean):[];
+  if(arr.indexOf(txt)===-1&&arr.length<3){arr.push(txt);btn.classList.add("selected");}
+  else if(arr.indexOf(txt)>-1){arr=arr.filter(function(s){return s!==txt;});btn.classList.remove("selected");}
+  ta.value=arr.join(", ");
+};
+function injectSuccessScreen(){
+  if(document.getElementById("norden-success-screen"))return;
+  var el=document.createElement("div");el.id="norden-success-screen";
+  el.innerHTML='<div class="norden-success-icon">✅</div><div class="norden-success-title">Tu sistema está <span>listo</span></div><div class="norden-success-sub">10 módulos personalizados para tu negocio. Copálos directo en WhatsApp.</div><button class="norden-success-btn" onclick="nordenHideSuccess()">Ver mi sistema →</button>';
+  document.body.appendChild(el);
+}
+window.nordenHideSuccess=function(){var el=document.getElementById("norden-success-screen");if(el)el.classList.remove("show");};
+function showSuccessScreen(){injectSuccessScreen();var el=document.getElementById("norden-success-screen");if(el){el.classList.add("show");setTimeout(nordenHideSuccess,3500);}}
+var successTriggered=false;
+var successObs=new MutationObserver(function(muts){
+  muts.forEach(function(m){
+    m.addedNodes.forEach(function(n){if(n.nodeType===1&&(n.id==="resultSection"||n.id==="result-section")&&!successTriggered){successTriggered=true;showSuccessScreen();}});
+    if(m.type==="attributes"&&m.attributeName==="style"){var t=m.target;if((t.id==="resultSection"||t.id==="result-section")&&t.style.display!=="none"&&!successTriggered){successTriggered=true;showSuccessScreen();}}
+  });
+});
+successObs.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:["style"]});
+document.addEventListener("click",function(e){if(e.target.closest("#generateBtn"))successTriggered=false;});
+var draftKey="norden_draft_v1";
+var draftFields=["negocioNombre","whatSell","targetAudience","price","diferencial","objections","results","extra"];
+function saveDraft(){
+  var d={};draftFields.forEach(function(id){var el=document.getElementById(id);if(el)d[id]=el.value;});
+  try{localStorage.setItem(draftKey,JSON.stringify(d));}catch(x){}
+}
+function loadDraft(){
+  try{var raw=localStorage.getItem(draftKey);if(!raw)return;var d=JSON.parse(raw);draftFields.forEach(function(id){var el=document.getElementById(id);if(el&&d[id])el.value=d[id];});}catch(x){}
+}
+document.addEventListener("input",function(e){if(e.target&&draftFields.indexOf(e.target.id)>-1)saveDraft();});
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){injectSuccessScreen();loadDraft();});}
+else{injectSuccessScreen();loadDraft();}
 })();
 </script></body>
   </html>
