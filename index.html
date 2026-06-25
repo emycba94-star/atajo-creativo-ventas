@@ -268,6 +268,52 @@ body.light-mode #dm-toggle{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.2
 .preview-footer{padding:16px 24px;border-top:1px solid #222;display:flex;gap:12px;justify-content:flex-end}
 .preview-copy-btn{background:#c6f135;color:#0a0a0a;border:none;padding:10px 20px;border-radius:50px;cursor:pointer;font-weight:600}
 .wizard-step{transition:opacity .3s ease,transform .3s ease}
+
+/* ===== NAV STICKY v1.0 ===== */
+#main-nav{position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(34,34,34,.8);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px;transition:all .3s}
+#main-nav.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 20px rgba(0,0,0,.4)}
+.nav-brand{color:#c6f135;font-weight:900;font-size:14px;letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:#888;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:color .2s;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:#c6f135;border-bottom-color:#c6f135}
+.nav-links a.active{color:#c6f135}
+.nav-cta{background:#c6f135;color:#000;font-weight:800;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:8px 20px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#d4ff44;transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;transition:all .3s;transform-origin:center}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(10,10,10,.98);border-bottom:1px solid #222;padding:24px 40px;flex-direction:column;gap:20px;z-index:8999}
+.nav-mobile-menu.open{display:flex}
+.nav-mobile-menu a{color:#ccc;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;padding:8px 0;border-bottom:1px solid #1a1a1a;transition:color .2s}
+.nav-mobile-menu a:hover{color:#c6f135}
+.nav-mobile-cta{background:#c6f135!important;color:#000!important;font-weight:800!important;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:14px 24px;text-align:center;text-decoration:none;display:block;margin-top:8px;border-bottom:none!important}
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .6s ease,transform .6s ease}
+.reveal-left.revealed{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .6s ease,transform .6s ease}
+.reveal-right.revealed{opacity:1;transform:translateX(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+/* ===== DARK MODE ENHANCED ===== */
+body.light-mode{--bg:#f5f5f0;--card:#fff;--border:#ddd;--white:#111;--grey:#555;--light:#333}
+body.light-mode #main-nav{background:rgba(245,245,240,.95);border-bottom-color:#ddd}
+body.light-mode .nav-links a{color:#555}
+body.light-mode .nav-mobile-menu{background:rgba(245,245,240,.98);border-bottom-color:#ddd}
+body.light-mode .nav-mobile-menu a{color:#333;border-bottom-color:#ddd}
+/* ===== NAV BODY OFFSET ===== */
+body{padding-top:56px!important}
+/* ===== MOBILE NAV ===== */
+@media(max-width:768px){
+  #main-nav{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+}
 </style>
 <!-- SEO + Open Graph — Batch 2 -->
 <meta name="description" content="NORDEN 1: Crea tu sistema de ventas por WhatsApp en 5 minutos. Módulos personalizados, mensajes optimizados y estructura profesional para tu negocio.">
@@ -287,6 +333,27 @@ body.light-mode #dm-toggle{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.2
 <link rel="manifest" href="/manifest.json">
 </head>
 <body>
+<nav id="main-nav">
+  <a href="#hero" class="nav-brand">Atajo Creativo</a>
+  <ul class="nav-links">
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#_howItWorks">Cómo funciona</a></li>
+    <li><a href="#_socialProof">Testimonios</a></li>
+    <li><a href="#formSection">Wizard</a></li>
+  </ul>
+  <a href="#formSection" class="nav-cta">Crear mi sistema</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile-menu" id="navMobileMenu">
+  <a href="#hero" class="nav-mobile-link">Inicio</a>
+  <a href="#_howItWorks" class="nav-mobile-link">Cómo funciona</a>
+  <a href="#_socialProof" class="nav-mobile-link">Testimonios</a>
+  <a href="#formSection" class="nav-mobile-link">El Wizard</a>
+  <a href="#formSection" class="nav-mobile-cta">CREAR MI SISTEMA →</a>
+</div>
+
 
 <div id="lastSystemBanner" style="display: none;" class="last-system-banner">
   <div class="last-system-info">⚡ Tenés un sistema guardado: <strong id="lastSystemName">Consultoría de marketing digital para Py...</strong> — <span id="lastSystemDate">generado el 3/6/2026</span></div>
@@ -813,6 +880,107 @@ if(document.readyState==="loading"){
   document.addEventListener("DOMContentLoaded",initBatch2);
 }else{
   initBatch2();setTimeout(initBatch2,800);
+}
+})();
+</script>
+<script id="norden-ux-medium">
+(function(){
+var nav=document.getElementById('main-nav');
+var navLinks=document.querySelectorAll('.nav-links a,.nav-mobile-link');
+function updateNav(){
+  if(!nav)return;
+  if(window.scrollY>20)nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  var sections=['hero','_howItWorks','_socialProof','formSection'];
+  var current='';
+  sections.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-80)current=id;
+  });
+  navLinks.forEach(function(a){
+    a.classList.remove('active');
+    var href=a.getAttribute('href');
+    if(href&&href==="#"+current)a.classList.add('active');
+  });
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+updateNav();
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var target=document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+      var mm=document.getElementById('navMobileMenu');
+      var hb=document.getElementById('navHamburger');
+      if(mm)mm.classList.remove('open');
+      if(hb)hb.classList.remove('open');
+    }
+  });
+});
+var hamburger=document.getElementById('navHamburger');
+var mobileMenu=document.getElementById('navMobileMenu');
+if(hamburger&&mobileMenu){
+  hamburger.addEventListener('click',function(){
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.addEventListener('click',function(e){
+    if(!hamburger.contains(e.target)&&!mobileMenu.contains(e.target)){
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+}
+var revealObserver;
+if('IntersectionObserver' in window){
+  revealObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){revealObserver.observe(el);});
+}else{
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el){el.classList.add('revealed');});
+}
+var dmBtn=document.getElementById('dm-toggle');
+if(dmBtn){
+  var savedMode=localStorage.getItem('colorMode');
+  if(savedMode==='light')document.body.classList.add('light-mode');
+  dmBtn.addEventListener('click',function(){
+    document.body.classList.toggle('light-mode');
+    var isLight=document.body.classList.contains('light-mode');
+    localStorage.setItem('colorMode',isLight?'light':'dark');
+    dmBtn.textContent=isLight?'☀️':'🌙';
+  });
+  if(document.body.classList.contains('light-mode'))dmBtn.textContent='☀️';
+}
+var delays=['reveal-delay-1','reveal-delay-2','reveal-delay-3','reveal-delay-4'];
+var rt=[
+  {sel:'#_stats .stat-card',d:true},
+  {sel:'#_howItWorks .how-step',d:true},
+  {sel:'#_socialProof .testimonial-card',d:true},
+  {sel:'#_cta',d:false},
+  {sel:'.form-section',d:false}
+];
+rt.forEach(function(t){
+  document.querySelectorAll(t.sel).forEach(function(el,i){
+    el.classList.add('reveal');
+    if(t.d&&i<4)el.classList.add(delays[i]);
+  });
+});
+if(revealObserver){
+  document.querySelectorAll('.reveal:not(.revealed)').forEach(function(el){revealObserver.observe(el);});
+}
+if(!document.querySelector('link[rel="preconnect"][href*="gstatic"]')){
+  var pl=document.createElement('link');
+  pl.rel='preconnect';
+  pl.href='https://fonts.gstatic.com';
+  pl.crossOrigin='anonymous';
+  document.head.appendChild(pl);
 }
 })();
 </script>
