@@ -553,7 +553,7 @@ function sanitizeAllInputs(){
   document.querySelectorAll('input[type=text],input:not([type]),textarea').forEach(function(el){
     el.addEventListener('blur',function(){
       const v=el.value;
-      const s=v.replace(/<script[sS]*?>[sS]*?</script>/gi,'').replace(/<[^>]*onw+s*=/gi,'<').replace(/javascript:/gi,'');
+      const s=v.replace(/<script[sS]*?>[sS]*?\u003c/script>/gi,'').replace(/<[^>]*onw+s*=/gi,'<').replace(/javascript:/gi,'');
       if(v!==s){el.value=s;window.toastB2('Input sanitizado por seguridad','warn');}
     });
   });
