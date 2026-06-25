@@ -136,7 +136,7 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .pdf-btn{background:#1a1a1a;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .pdf-btn:hover{background:var(--green);color:#000}
 /* CHAT COACH */
-.coach-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:var(--green);border:none;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(198,241,53,.4);z-index:1000;transition:all .2s}
+.coach-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:var(--green);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(198,241,53,.4);z-index:1000;transition:all .2s}
 .coach-fab:hover{transform:scale(1.1);background:#d4ff44}
 .coach-fab.visible{display:flex}
 .coach-panel{position:fixed;bottom:96px;right:28px;width:340px;max-height:480px;background:#111;border:1px solid rgba(198,241,53,.3);display:none;flex-direction:column;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.6)}
@@ -183,7 +183,52 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
   .print-header .print-brand{font-size:12px;color:#5a8200;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
 }
 .print-header{display:none}
-.rubro-badge{display:inline-block;margin:12px auto 0;padding:5px 16px;border-radius:20px;background:#c6f135;color:#000;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}.rubro-badge-wrap{text-align:center;margin-top:8px;}</style>
+.rubro-badge{display:inline-block;margin:12px auto 0;padding:5px 16px;border-radius:20px;background:#c6f135;color:#000;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}.rubro-badge-wrap{text-align:center;margin-top:8px;}
+/* ===== SECCIONES NUEVAS: Stats, Testimonios, Cómo funciona ===== */
+.stats-section{padding:60px 40px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media(max-width:768px){.stats-section{grid-template-columns:repeat(2,1fr);padding:40px 20px}}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 20px;text-align:center;transition:.3s}
+.stat-card:hover{border-color:var(--green);transform:translateY(-4px)}
+.stat-number{font-size:42px;font-weight:900;color:var(--green);line-height:1;margin-bottom:8px}
+.stat-label{font-size:13px;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.how-section{padding:80px 40px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.how-section{padding:60px 20px}}
+.how-title{font-size:clamp(28px,4vw,42px);font-weight:900;text-transform:uppercase;margin-bottom:48px;text-align:center}
+.how-title span{color:var(--green)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+@media(max-width:768px){.how-steps{grid-template-columns:1fr;gap:20px}}
+.how-step{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 24px;position:relative;transition:.3s}
+.how-step:hover{border-color:var(--green);transform:translateY(-4px)}
+.how-step-num{font-size:56px;font-weight:900;color:var(--green);opacity:.15;position:absolute;top:16px;right:20px;line-height:1}
+.how-step-icon{font-size:36px;margin-bottom:16px}
+.how-step h3{font-size:18px;font-weight:700;margin-bottom:10px;text-transform:uppercase}
+.how-step p{font-size:14px;color:var(--gray);line-height:1.6}
+.testimonials-section{padding:80px 40px;max-width:1200px;margin:0 auto}
+@media(max-width:768px){.testimonials-section{padding:60px 20px}}
+.testimonials-title{font-size:clamp(28px,4vw,42px);font-weight:900;text-transform:uppercase;margin-bottom:48px;text-align:center}
+.testimonials-title span{color:var(--green)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:768px){.testimonials-grid{grid-template-columns:1fr}}
+.testimonial-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:.3s}
+.testimonial-card:hover{border-color:var(--green);transform:translateY(-4px)}
+.testimonial-stars{color:#f5c518;font-size:18px;margin-bottom:16px;letter-spacing:2px}
+.testimonial-text{font-size:15px;color:var(--light);line-height:1.7;margin-bottom:20px;font-style:italic}
+.testimonial-text::before{content:'"';color:var(--green);font-size:28px;font-weight:900;line-height:0;vertical-align:-8px;margin-right:4px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.testimonial-name{font-size:14px;font-weight:700;margin-bottom:2px}
+.testimonial-role{font-size:12px;color:var(--gray)}
+.cta-banner{background:linear-gradient(135deg,#0d1f0d 0%,#1a3a1a 100%);border:1px solid var(--green);border-radius:24px;padding:60px 40px;text-align:center;max-width:900px;margin:0 auto 80px;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(198,241,53,.1) 0%,transparent 70%);pointer-events:none}
+.cta-banner h2{font-size:clamp(28px,4vw,48px);font-weight:900;text-transform:uppercase;margin-bottom:16px}
+.cta-banner h2 span{color:var(--green)}
+.cta-banner p{font-size:17px;color:var(--gray);margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto}
+/* Coach IA mejorado */
+.coach-fab{position:fixed;bottom:32px;right:32px;z-index:9000;background:var(--green);color:#0a0a0a;border:none;border-radius:50px;padding:14px 22px;cursor:pointer;font-weight:800;font-size:14px;box-shadow:0 4px 24px rgba(198,241,53,.4);transition:.3s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.coach-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 32px rgba(198,241,53,.5)}
+.coach-fab .coach-dot{width:8px;height:8px;border-radius:50%;background:#0a0a0a;animation:pulse-dot 1.5s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+</style>
 <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.history-badge{display:inline-block;background:#c8f135;color:#111;font-size:9px;font-weight:700;border-radius:50%;width:14px;height:14px;line-height:14px;text-align:center;margin-left:3px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-char-bar{height:2px;border-radius:2px;margin-top:6px;background:#c8f135}.char-bar-wrap{background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin:6px 0 2px 0}.char-label-wrap{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.edit-inline-btn{background:transparent;border:1px solid rgba(200,241,53,0.3);color:rgba(200,241,53,0.7);font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;font-family:inherit;font-weight:600}.edit-inline-btn.editing{background:rgba(200,241,53,0.1);border-color:#c8f135;color:#c8f135}.module-content-inner[contenteditable="true"]{outline:1px solid rgba(200,241,53,0.3);border-radius:4px;padding:8px;cursor:text}.edit-hint{font-size:10px;color:rgba(200,241,53,0.5);text-align:right;margin-top:4px;display:none}.edit-hint.visible{display:block}.save-inline-btn{background:#c8f135;border:none;color:#111;font-size:10px;padding:4px 10px;border-radius:4px;cursor:pointer;font-weight:700;display:none;margin-left:4px}.save-inline-btn.visible{display:inline-block}.norden-metrics-bar{display:flex;gap:12px;padding:12px 0 16px 0;flex-wrap:wrap}.norden-metric-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 14px;font-size:11px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px}.norden-metric-chip strong{color:#c8f135;font-size:15px;font-weight:800}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-b2-css">
 :root{--lm-bg:#f5f5f0;--lm-card:#fff;--lm-text:#1a1a1a;--lm-border:#ddd;--transition-mode:0.3s ease}
 body.light-mode{background:var(--lm-bg)!important;color:var(--lm-text)!important}
@@ -278,6 +323,87 @@ body.light-mode #dm-toggle{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.2
 <div class="module-item"><span class="module-num">10</span><div><div class="module-name">Guión de llamada</div><div class="module-desc">Script completo para llamada de seguimiento</div></div></div>
 </div>
 </section>
+
+<!-- ===== STATS ===== -->
+<section id="_stats">
+<div class="stats-section">
+  <div class="stat-card"><div class="stat-number">+2.400</div><div class="stat-label">Sistemas generados</div></div>
+  <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Rubros disponibles</div></div>
+  <div class="stat-card"><div class="stat-number">10</div><div class="stat-label">Módulos de venta</div></div>
+  <div class="stat-card"><div class="stat-number">&lt;2 min</div><div class="stat-label">Tiempo de setup</div></div>
+</div>
+</section>
+
+<!-- ===== CÓMO FUNCIONA ===== -->
+<section id="_howItWorks">
+<div class="how-section">
+  <h2 class="how-title">¿Cómo <span>funciona</span>?</h2>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <div class="how-step-icon">🎯</div>
+      <h3>Elegís tu rubro</h3>
+      <p>Seleccionás tu industria y el sistema se adapta automáticamente a tu tipo de negocio y clientes.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <div class="how-step-icon">⚙️</div>
+      <h3>Completás 5 datos</h3>
+      <p>Tu nombre, propuesta de valor, objeciones comunes y estilo de comunicación. Menos de 2 minutos.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <div class="how-step-icon">🚀</div>
+      <h3>Usás tu sistema</h3>
+      <p>10 módulos de venta personalizados, listos para copiar y pegar en WhatsApp. Actualizables con IA.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section id="_socialProof">
+<div class="testimonials-section">
+  <h2 class="testimonials-title">Lo que dicen <span>nuestros usuarios</span></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Antes improvisaba cada mensaje. Ahora tengo un sistema y mis clientes sienten que hablo como profesional desde el primer contacto.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👤</div>
+        <div><div class="testimonial-name">Marcos R.</div><div class="testimonial-role">Inmobiliaria · Córdoba</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">Generé mi sistema en 3 minutos y en esa misma semana cerré 2 clientes nuevos. Los módulos de objeciones son increíbles.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👤</div>
+        <div><div class="testimonial-name">Valentina G.</div><div class="testimonial-role">Estética · Buenos Aires</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">El Coach IA es lo mejor. Me reescribe los módulos cuando siento que no suenan bien y siempre da en el clavo con el tono de mi marca.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👤</div>
+        <div><div class="testimonial-name">Diego M.</div><div class="testimonial-role">Consultoría · Rosario</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="_cta" style="padding:0 40px 80px">
+<div class="cta-banner">
+  <h2>Tu sistema en <span>menos de 2 minutos</span></h2>
+  <p>Sin código. Sin templates genéricos. Un sistema real, adaptado a tu negocio y listo para usar en WhatsApp hoy.</p>
+  <button class="btn-main" onclick="document.getElementById('formSection').style.display='block';document.getElementById('formSection').scrollIntoView({behavior:'smooth'})">CREAR MI SISTEMA AHORA →</button>
+</div>
+</section>
+
+
 <section class="form-section" id="formSection" style="display:none">
 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
 <div class="step active" id="step1">
@@ -393,7 +519,7 @@ body.light-mode #dm-toggle{background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.2
 </div>
 </section>
 <div class="print-header"><div class="print-brand">ATAJO CREATIVO</div><h1>Tu Sistema de Ventas por WhatsApp</h1><p id="printMeta"></p></div>
-<button class="coach-fab" id="coachFab" onclick="toggleCoach()" title="Coach de ventas">💬</button><div class="coach-panel" id="coachPanel"><div class="coach-header"><span class="coach-header-title">💬 Coach de Ventas</span><button class="coach-close" onclick="toggleCoach()">×</button></div><div style="padding:10px 16px;border-bottom:1px solid #1a1a1a;display:flex;gap:8px"><button onclick="startPractice()" style="background:rgba(198,241,53,0.1);border:1px solid rgba(198,241,53,0.3);color:#c6f135;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">⚡ Practicar objección</button><button onclick="resetCoach()" style="background:transparent;border:1px solid #333;color:#666;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">↺ Limpiar</button></div>
+<button class="coach-fab" id="coachFab" onclick="toggleCoach()" title="Coach de ventas IA"><span class="coach-dot"></span>🤖 COACH IA</button><div class="coach-panel" id="coachPanel"><div class="coach-header"><span class="coach-header-title">💬 Coach de Ventas</span><button class="coach-close" onclick="toggleCoach()">×</button></div><div style="padding:10px 16px;border-bottom:1px solid #1a1a1a;display:flex;gap:8px"><button onclick="startPractice()" style="background:rgba(198,241,53,0.1);border:1px solid rgba(198,241,53,0.3);color:#c6f135;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">⚡ Practicar objección</button><button onclick="resetCoach()" style="background:transparent;border:1px solid #333;color:#666;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">↺ Limpiar</button></div>
 <div class="coach-messages" id="coachMessages"></div><div class="coach-input-row"><input class="coach-input" id="coachInput" placeholder="Preguntá algo sobre ventas..." onkeydown="coachKeydown(event)" /><button class="coach-send" id="coachSend" onclick="sendCoach()">ENVIAR</button></div></div>
 <footer style="text-align:center;padding:40px;color:var(--gray);font-size:12px;border-top:1px solid var(--border);margin-top:60px">
 <strong style="color:var(--white)">Atajo Creativo</strong> · Recurso exclusivo para clientes · Sistema generado con IA
