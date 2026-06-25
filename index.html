@@ -136,48 +136,48 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 .pdf-btn{background:#1a1a1a;border:2px solid var(--green);color:var(--green);font-weight:800;font-size:13px;padding:14px 28px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s}
 .pdf-btn:hover{background:var(--green);color:#000}
 /* CHAT COACH */
-.coach-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:var(--green);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(198,241,53,.4);z-index:1000;transition:all .2s}
-.coach-fab:hover{transform:scale(1.1);background:#d4ff44}
+.coach-fab{position:fixed;bottom:28px;right:28px;z-index:1000;background:#0a0a0a;border:1.5px solid rgba(198,241,53,.35);color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px;padding:0 20px 0 16px;height:52px;border-radius:12px;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;transition:all .25s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 24px rgba(0,0,0,.5),0 0 0 0 rgba(198,241,53,0);white-space:nowrap}
+.coach-fab:hover{border-color:#c6f135;background:#111;box-shadow:0 6px 32px rgba(0,0,0,.6),0 0 20px rgba(198,241,53,.12);transform:translateY(-2px)}
+.coach-fab.active{border-color:#c6f135;background:#0d0d0d}
 .coach-fab.visible{display:flex}
-.coach-panel{position:fixed;bottom:96px;right:28px;width:340px;max-height:480px;background:#111;border:1px solid rgba(198,241,53,.3);display:none;flex-direction:column;z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.coach-fab-icon{width:28px;height:28px;background:linear-gradient(135deg,#c6f135,#7ab800);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.coach-fab-text{display:flex;flex-direction:column;line-height:1.2}
+.coach-fab-label{font-size:11px;font-weight:900;letter-spacing:1.5px;color:#fff}
+.coach-fab-sub{font-size:9px;font-weight:500;letter-spacing:.5px;color:rgba(198,241,53,.7);text-transform:none}
+.coach-panel{position:fixed;bottom:92px;right:28px;width:360px;max-height:520px;background:#0d0d0d;border:1px solid #1e1e1e;display:none;flex-direction:column;z-index:999;box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 0 1px rgba(198,241,53,.08);border-radius:16px;overflow:hidden}
 .coach-panel.open{display:flex}
-.coach-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.coach-header-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--green)}
-.coach-close{background:none;border:none;color:var(--gray);cursor:pointer;font-size:18px;line-height:1}
-.coach-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;max-height:300px}
-.coach-msg{padding:10px 14px;font-size:13px;line-height:1.6;border-radius:2px;max-width:90%}
-.coach-msg.ai{background:rgba(198,241,53,.08);border-left:2px solid var(--green);color:var(--light);align-self:flex-start}
-.coach-msg.user{background:#1a1a1a;color:var(--light);align-self:flex-end;border-right:2px solid #444}
-.coach-msg.loading{color:var(--gray);font-style:italic}
-.coach-input-row{padding:10px 14px;border-top:1px solid var(--border);display:flex;gap:8px}
-.coach-input{flex:1;background:#0a0a0a;border:1px solid var(--border);color:var(--white);padding:10px 12px;font-size:13px;outline:none;font-family:inherit}
-.coach-input:focus{border-color:var(--green)}
-.coach-send{background:var(--green);border:none;color:#000;font-weight:800;font-size:12px;padding:10px 14px;cursor:pointer;text-transform:uppercase;transition:all .2s}
-.coach-send:hover{background:#d4ff44}
-.coach-send:disabled{opacity:.5;cursor:not-allowed}
-/* MOD 11 */
-.mod11-btn{background:linear-gradient(135deg,var(--green),#a8d400);color:#000;font-weight:800;font-size:13px;padding:14px 28px;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all .2s;position:relative}
-.mod11-btn::after{content:'NUEVO';position:absolute;top:-8px;right:-8px;background:#ff6b35;color:#fff;font-size:9px;font-weight:800;padding:2px 6px;letter-spacing:1px}
-.mod11-btn:hover{opacity:.9}
-/* PRINT */
-@media print{
-  .coach-fab,.coach-panel,.results-actions,.module-actions,.rewrite-panel,.last-system-banner,footer,.gen-progress{display:none!important}
-  body{background:#fff!important;color:#000!important}
-  .results-section{display:block!important;padding:20px!important;max-width:100%!important}
-  .results-header h2{color:#000!important;font-size:24px!important}
-  .results-header h2 span{color:#5a8200!important}
-  .results-header p{color:#444!important}
-  .module-card{border:1px solid #ddd!important;background:#fff!important;margin-bottom:16px!important;break-inside:avoid}
-  .module-card-header{background:#f5f5f5!important;padding:12px 16px!important}
-  .mc-num{color:#5a8200!important}
-  .mc-title-main{color:#000!important}
-  .mc-title-sub{color:#555!important}
-  .mc-status{display:none!important}
-  .mc-arrow{display:none!important}
-  .module-content{display:block!important}
-  .module-content-inner{color:#222!important;padding-top:12px!important}
-  .module-content-inner h1,.module-content-inner h2,.module-content-inner h3{color:#5a8200!important}
-  .print-header{display:block!important;text-align:center;padding:20px 0 32px;border-bottom:3px solid #5a8200;margin-bottom:32px}
+.coach-header{padding:16px 20px;background:#111;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.coach-header-info{display:flex;align-items:center;gap:12px}
+.coach-header-avatar{width:36px;height:36px;background:linear-gradient(135deg,#c6f135,#7ab800);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.coach-header-text{display:flex;flex-direction:column;line-height:1.3}
+.coach-header-name{font-size:13px;font-weight:800;color:#fff;letter-spacing:.3px}
+.coach-header-status{font-size:10px;color:#c6f135;font-weight:600;letter-spacing:.5px;display:flex;align-items:center;gap:5px}
+.coach-header-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#c6f135;display:inline-block}
+.coach-header-title{font-size:13px;font-weight:800;letter-spacing:.5px;color:#fff}
+.coach-close{background:none;border:none;color:#444;cursor:pointer;font-size:20px;line-height:1;transition:color .2s;padding:4px;border-radius:6px}
+.coach-close:hover{color:#888;background:#1a1a1a}
+.coach-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:#222 transparent}
+.coach-msg{max-width:86%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.6}
+.coach-msg.bot{background:#161616;border:1px solid #222;color:#ccc;align-self:flex-start;border-bottom-left-radius:4px}
+.coach-msg.user{background:#c6f135;color:#000;font-weight:600;align-self:flex-end;border-bottom-right-radius:4px}
+.coach-msg.typing{background:#161616;border:1px solid #222;align-self:flex-start;padding:12px 16px}
+.coach-typing-dots{display:flex;gap:4px;align-items:center}
+.coach-typing-dot{width:6px;height:6px;border-radius:50%;background:#555;animation:typing-bounce .8s infinite}
+.coach-typing-dot:nth-child(2){animation-delay:.15s}
+.coach-typing-dot:nth-child(3){animation-delay:.3s}
+@keyframes typing-bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.coach-input-area{padding:12px 16px;border-top:1px solid #1a1a1a;display:flex;gap:8px;align-items:flex-end;background:#0d0d0d}
+.coach-input{flex:1;background:#161616;border:1px solid #252525;color:#fff;padding:10px 14px;font-size:13px;border-radius:10px;outline:none;font-family:inherit;resize:none;min-height:40px;max-height:100px;line-height:1.5;transition:border-color .2s}
+.coach-input:focus{border-color:rgba(198,241,53,.4)}
+.coach-input::placeholder{color:#444}
+.coach-send{background:#c6f135;border:none;color:#000;width:36px;height:36px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;flex-shrink:0;font-weight:900}
+.coach-send:hover{background:#d4ff44;transform:scale(1.05)}
+.coach-send:disabled{background:#222;color:#444;cursor:not-allowed;transform:none}
+.coach-footer-bar{padding:8px 16px;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center}
+.coach-reset{background:none;border:none;color:#444;font-size:11px;cursor:pointer;transition:color .2s;letter-spacing:.5px}
+.coach-reset:hover{color:#666}
+.coach-powered{font-size:10px;color:#333;letter-spacing:.5px}
+display:block!important;text-align:center;padding:20px 0 32px;border-bottom:3px solid #5a8200;margin-bottom:32px}
   .print-header h1{font-size:28px;font-weight:900;color:#000;text-transform:uppercase;margin-bottom:8px}
   .print-header p{font-size:14px;color:#555}
   .print-header .print-brand{font-size:12px;color:#5a8200;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
@@ -226,8 +226,10 @@ body{background:var(--bg);color:var(--white);font-family:'Inter',system-ui,sans-
 /* Coach IA mejorado */
 .coach-fab{position:fixed;bottom:32px;right:32px;z-index:9000;background:var(--green);color:#0a0a0a;border:none;border-radius:50px;padding:14px 22px;cursor:pointer;font-weight:800;font-size:14px;box-shadow:0 4px 24px rgba(198,241,53,.4);transition:.3s;display:flex;align-items:center;gap:8px;white-space:nowrap}
 .coach-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 32px rgba(198,241,53,.5)}
-.coach-fab .coach-dot{width:8px;height:8px;border-radius:50%;background:#0a0a0a;animation:pulse-dot 1.5s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.coach-fab .coach-status-dot{width:7px;height:7px;border-radius:50%;background:#c6f135;position:absolute;top:10px;right:10px;box-shadow:0 0 6px rgba(198,241,53,.8)}
+@keyframes status-pulse{0%,100%{box-shadow:0 0 4px rgba(198,241,53,.8)}50%{box-shadow:0 0 12px rgba(198,241,53,1)}}
+.coach-status-dot{animation:status-pulse 2s infinite}
+
 </style>
 <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.history-badge{display:inline-block;background:#c8f135;color:#111;font-size:9px;font-weight:700;border-radius:50%;width:14px;height:14px;line-height:14px;text-align:center;margin-left:3px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-char-bar{height:2px;border-radius:2px;margin-top:6px;background:#c8f135}.char-bar-wrap{background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin:6px 0 2px 0}.char-label-wrap{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.edit-inline-btn{background:transparent;border:1px solid rgba(200,241,53,0.3);color:rgba(200,241,53,0.7);font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;font-family:inherit;font-weight:600}.edit-inline-btn.editing{background:rgba(200,241,53,0.1);border-color:#c8f135;color:#c8f135}.module-content-inner[contenteditable="true"]{outline:1px solid rgba(200,241,53,0.3);border-radius:4px;padding:8px;cursor:text}.edit-hint{font-size:10px;color:rgba(200,241,53,0.5);text-align:right;margin-top:4px;display:none}.edit-hint.visible{display:block}.save-inline-btn{background:#c8f135;border:none;color:#111;font-size:10px;padding:4px 10px;border-radius:4px;cursor:pointer;font-weight:700;display:none;margin-left:4px}.save-inline-btn.visible{display:inline-block}.norden-metrics-bar{display:flex;gap:12px;padding:12px 0 16px 0;flex-wrap:wrap}.norden-metric-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 14px;font-size:11px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px}.norden-metric-chip strong{color:#c8f135;font-size:15px;font-weight:800}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-b2-css">
 :root{--lm-bg:#f5f5f0;--lm-card:#fff;--lm-text:#1a1a1a;--lm-border:#ddd;--transition-mode:0.3s ease}
@@ -749,8 +751,35 @@ body{padding-top:56px!important}
 </div>
 </section>
 <div class="print-header"><div class="print-brand">ATAJO CREATIVO</div><h1>Tu Sistema de Ventas por WhatsApp</h1><p id="printMeta"></p></div>
-<button class="coach-fab" id="coachFab" onclick="toggleCoach()" title="Coach de ventas IA"><span class="coach-dot"></span>🤖 COACH IA</button><div class="coach-panel" id="coachPanel"><div class="coach-header"><span class="coach-header-title">💬 Coach de Ventas</span><button class="coach-close" onclick="toggleCoach()">×</button></div><div style="padding:10px 16px;border-bottom:1px solid #1a1a1a;display:flex;gap:8px"><button onclick="startPractice()" style="background:rgba(198,241,53,0.1);border:1px solid rgba(198,241,53,0.3);color:#c6f135;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">⚡ Practicar objección</button><button onclick="resetCoach()" style="background:transparent;border:1px solid #333;color:#666;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;border-radius:4px;font-family:inherit;letter-spacing:1px;text-transform:uppercase">↺ Limpiar</button></div>
-<div class="coach-messages" id="coachMessages"></div><div class="coach-input-row"><input class="coach-input" id="coachInput" placeholder="Preguntá algo sobre ventas..." onkeydown="coachKeydown(event)" /><button class="coach-send" id="coachSend" onclick="sendCoach()">ENVIAR</button></div></div>
+<button class="coach-fab" id="coachFab" onclick="toggleCoach()" title="Hablar con el Coach de Ventas" aria-label="Abrir Coach de Ventas IA">
+  <div class="coach-fab-icon">💼</div>
+  <div class="coach-fab-text">
+    <span class="coach-fab-label">Coach de Ventas</span>
+    <span class="coach-fab-sub">Experto en cierre · En línea</span>
+  </div>
+</button><div class="coach-panel" id="coachPanel" role="dialog" aria-label="Coach de Ventas IA">
+  <div class="coach-header">
+    <div class="coach-header-info">
+      <div class="coach-header-avatar">💼</div>
+      <div class="coach-header-text">
+        <span class="coach-header-name">Coach de Ventas IA</span>
+        <span class="coach-header-status">En línea ahora</span>
+      </div>
+    </div>
+    <button class="coach-close" onclick="toggleCoach()" aria-label="Cerrar">×</button>
+  </div>
+  <div class="coach-messages" id="coachMessages">
+    <div class="coach-msg bot">Hola. Soy tu Coach de Ventas con 10 años de experiencia. Especialista en cierre, persuasión y manejo de objeciones. ¿En qué parte del proceso de venta te puedo ayudar hoy?</div>
+  </div>
+  <div class="coach-input-area">
+    <textarea class="coach-input" id="coachInput" placeholder="Preguntame cualquier cosa sobre ventas..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendCoach();}"></textarea>
+    <button class="coach-send" id="coachSend" onclick="sendCoach()" aria-label="Enviar">↑</button>
+  </div>
+  <div class="coach-footer-bar">
+    <button class="coach-reset" onclick="resetCoach()">Nueva conversación</button>
+    <span class="coach-powered">Impulsado por Claude AI</span>
+  </div>
+</div>
 <footer>
   <p>Atajo Creativo · Recurso exclusivo para clientes · Sistema generado con IA</p>
   <div class="footer-links">
@@ -1261,6 +1290,93 @@ document.addEventListener("click",function(e){
 document.addEventListener("keydown",function(e){
   if(e.key==="Escape")window.closePrivacy();
 });
+})();
+</script>
+<script id="norden-coach-upgrade">
+(function(){
+window.toggleCoach=function(){
+  var panel=document.getElementById("coachPanel");
+  var fab=document.getElementById("coachFab");
+  if(!panel)return;
+  var isOpen=panel.classList.contains("open");
+  panel.classList.toggle("open",!isOpen);
+  if(fab)fab.classList.toggle("active",!isOpen);
+  if(!isOpen){
+    var input=document.getElementById("coachInput");
+    if(input)setTimeout(function(){input.focus();},100);
+    var msgs=document.getElementById("coachMessages");
+    if(msgs)msgs.scrollTop=msgs.scrollHeight;
+  }
+};
+window.resetCoach=function(){
+  var msgs=document.getElementById("coachMessages");
+  if(!msgs)return;
+  msgs.innerHTML="";
+  var welcome=document.createElement("div");
+  welcome.className="coach-msg bot";
+  welcome.textContent="Conversación reiniciada. ¿Cómo te puedo ayudar hoy con tus ventas?";
+  msgs.appendChild(welcome);
+  window._coachHistory=[];
+};
+window.sendCoach=function(){
+  var input=document.getElementById("coachInput");
+  var sendBtn=document.getElementById("coachSend");
+  var msgs=document.getElementById("coachMessages");
+  if(!input||!msgs)return;
+  var text=(input.value||"").trim();
+  if(!text)return;
+  input.value="";
+  input.style.height="auto";
+  var userDiv=document.createElement("div");
+  userDiv.className="coach-msg user";
+  userDiv.textContent=text;
+  msgs.appendChild(userDiv);
+  msgs.scrollTop=msgs.scrollHeight;
+  var typingDiv=document.createElement("div");
+  typingDiv.className="coach-msg typing";
+  typingDiv.id="coachTyping";
+  typingDiv.innerHTML="<div class=\"coach-typing-dots\"><div class=\"coach-typing-dot\"></div><div class=\"coach-typing-dot\"></div><div class=\"coach-typing-dot\"></div></div>";
+  msgs.appendChild(typingDiv);
+  msgs.scrollTop=msgs.scrollHeight;
+  if(sendBtn){sendBtn.disabled=true;}
+  if(input){input.disabled=true;}
+  if(!window._coachHistory)window._coachHistory=[];
+  window._coachHistory.push({role:"user",content:text});
+  fetch("/.netlify/functions/claude",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({coach:true,messages:window._coachHistory})
+  }).then(function(r){return r.json();}).then(function(data){
+    var typing=document.getElementById("coachTyping");
+    if(typing)typing.remove();
+    var reply=data.content||(data[0]&&data[0].text)||"Ocurrió un error. Reintentá.";
+    var botDiv=document.createElement("div");
+    botDiv.className="coach-msg bot";
+    botDiv.textContent=reply;
+    msgs.appendChild(botDiv);
+    msgs.scrollTop=msgs.scrollHeight;
+    window._coachHistory.push({role:"assistant",content:reply});
+    if(window._coachHistory.length>20)window._coachHistory=window._coachHistory.slice(-20);
+  }).catch(function(){
+    var typing=document.getElementById("coachTyping");
+    if(typing)typing.remove();
+    var errDiv=document.createElement("div");
+    errDiv.className="coach-msg bot";
+    errDiv.textContent="Error de conexión. Verificá tu internet e intentá de nuevo.";
+    msgs.appendChild(errDiv);
+    msgs.scrollTop=msgs.scrollHeight;
+  }).finally(function(){
+    if(sendBtn)sendBtn.disabled=false;
+    if(input){input.disabled=false;input.focus();}
+  });
+};
+document.addEventListener("input",function(e){
+  if(e.target&&e.target.id==="coachInput"){
+    e.target.style.height="auto";
+    e.target.style.height=Math.min(e.target.scrollHeight,100)+"px";
+  }
+});
+window._coachHistory=[];
 })();
 </script>
 </body>
