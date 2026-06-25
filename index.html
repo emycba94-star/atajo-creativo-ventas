@@ -331,6 +331,9 @@ body{padding-top:56px!important}
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https: data: blob:; connect-src 'self' https:; frame-ancestors 'none'">
 <meta name="theme-color" content="#c6f135">
 <link rel="manifest" href="/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" type="font/woff2" crossorigin>
 </head>
 <body>
 <nav id="main-nav">
@@ -981,6 +984,58 @@ if(!document.querySelector('link[rel="preconnect"][href*="gstatic"]')){
   pl.href='https://fonts.gstatic.com';
   pl.crossOrigin='anonymous';
   document.head.appendChild(pl);
+}
+})();
+</script>
+<script id="norden-event-refactor">
+(function(){
+document.addEventListener("click",function(e){
+  var t=e.target;
+  var optCard=t.closest(".option-card");
+  if(optCard&&optCard.hasAttribute("data-fn")){
+    var fn=optCard.getAttribute("data-fn");
+    var args=JSON.parse(optCard.getAttribute("data-args")||"[]");
+    if(window[fn])window[fn].apply(null,args);
+    return;
+  }
+  var chkItem=t.closest(".checkbox-item");
+  if(chkItem&&chkItem.hasAttribute("data-fn")){
+    var cfn=chkItem.getAttribute("data-fn");
+    var cargs=JSON.parse(chkItem.getAttribute("data-args")||"[]");
+    if(window[cfn])window[cfn].apply(null,cargs);
+    return;
+  }
+});
+function initDelegation(){
+  document.querySelectorAll("[onclick]").forEach(function(el){
+    var oc=el.getAttribute("onclick");
+    if(!oc)return;
+    var m=oc.match(/^(\w+)\((.*)\)\s*$/);
+    if(!m)return;
+    var fn=m[1];
+    var rawArgs=m[2];
+    try{
+      var args=rawArgs?JSON.parse("["+rawArgs+"]"):[];
+      el.setAttribute("data-fn",fn);
+      el.setAttribute("data-args",JSON.stringify(args));
+    }catch(err){}
+  });
+}
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",initDelegation);
+}else{initDelegation();}
+})();
+</script>
+<script id="norden-sw-register">
+(function(){
+if('serviceWorker' in navigator){
+  window.addEventListener("load",function(){
+    navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(function(reg){
+      console.log("[SW] Registrado:",reg.scope);
+    }).catch(function(err){
+      console.log("[SW] Error:",err);
+    });
+  });
 }
 })();
 </script>
