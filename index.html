@@ -384,6 +384,11 @@ body{padding-top:56px!important}
 <meta property="og:title" content="NORDEN 1 — Tu Sistema de Ventas por WhatsApp">
 <meta property="og:description" content="Crea tu sistema de ventas profesional en WhatsApp en 5 minutos. Sin código. Sin complicaciones.">
 <meta property="og:image" content="https://cozy-baklava-5e60cd.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tu Sistema de Ventas por WhatsApp en 2 minutos">
+<meta name="twitter:description" content="IA que crea 10 módulos personalizados para tu negocio. Sin registro.">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NORDEN 1 — Sistema de Ventas por WhatsApp">
@@ -668,6 +673,8 @@ body{padding-top:56px!important}
 <div class="step-label">Paso 2 de 5</div>
 <div class="step-title">Tu <span style="color:var(--green)">negocio</span></div>
 <div class="step-desc">Contános qué vendés y a quién.</div>
+<label class="field-label">¿Cómo se llama tu negocio?</label>
+<input type="text" id="negocioNombre" class="text-input" placeholder="Ej: Atelier Laura, Inmobiliaria Sur, Dr. Martínez" maxlength="60">
 <label class="field-label">¿Qué vendés exactamente?</label>
 <textarea class="form-textarea" id="whatYouSell" placeholder="Ej: Diseño de logos para emprendedores, paquetes de $150 a $800..."></textarea>
 <label class="field-label">¿A quién le vendés?</label>
@@ -1441,5 +1448,63 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
 else{checkBanner();injectWaShare();}
 })();
 </script>
-</body>
+
+<style id="norden-fase2-css">
+.modulo-card.skeleton .modulo-content,.modulo-card.skeleton .modulo-title{background:linear-gradient(90deg,#1e1e1e 25%,#2a2a2a 50%,#1e1e1e 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px;color:transparent !important;min-height:1em;}
+.modulo-card.skeleton .modulo-content{min-height:60px;margin-top:8px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.norden-step-dots{display:flex;gap:6px;align-items:center;justify-content:center;margin-bottom:16px;}
+.norden-step-dot{width:8px;height:8px;border-radius:50%;background:#333;transition:all .3s;}
+.norden-step-dot.active{background:var(--green);transform:scale(1.4);}
+.norden-step-dot.done{background:var(--green);opacity:.5;}
+.text-input{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px 14px;color:var(--white);font-size:14px;font-family:inherit;transition:border .2s;outline:none;margin-bottom:16px;}
+.text-input:focus{border-color:var(--green);}
+</style>
+<script id="norden-fase2-ux">
+(function(){
+function injectStepDots(){
+  var formSec=document.getElementById("formSection");
+  if(!formSec||document.getElementById("norden-step-dots"))return;
+  var dots=document.createElement("div");
+  dots.id="norden-step-dots";dots.className="norden-step-dots";
+  for(var i=1;i<=5;i++){var d=document.createElement("div");d.className="norden-step-dot";d.setAttribute("data-step",i);dots.appendChild(d);}
+  var progBar=formSec.querySelector(".progress-bar");
+  if(progBar)progBar.parentNode.insertBefore(dots,progBar.nextSibling);
+  else formSec.insertBefore(dots,formSec.firstChild);
+}
+function updateStepDots(n){
+  document.querySelectorAll(".norden-step-dot").forEach(function(d){
+    var s=parseInt(d.getAttribute("data-step"));
+    d.className="norden-step-dot"+(s<n?" done":s===n?" active":"");
+  });
+}
+var _origShowStep=window.showStep;
+window.showStep=function(n){if(_origShowStep)_origShowStep(n);updateStepDots(n);};
+function applySkeleton(){
+  document.querySelectorAll(".modulo-card").forEach(function(card){
+    var statusEl=card.querySelector(".modulo-status,.status-badge");
+    var isPending=statusEl&&(statusEl.textContent.includes("PENDIENTE")||statusEl.textContent.includes("pendiente"));
+    isPending?card.classList.add("skeleton"):card.classList.remove("skeleton");
+  });
+}
+var skObs=new MutationObserver(applySkeleton);
+skObs.observe(document.body,{childList:true,subtree:true,characterData:true});
+var _origFetch=window.fetch;
+window.fetch=function(url,opts){
+  var nombre=window._negocioNombre;
+  if(nombre&&opts&&opts.body&&typeof opts.body==="string"&&opts.body.includes("prompt")){
+    try{var body=JSON.parse(opts.body);if(body.prompt&&!body.prompt.includes(nombre)){body.prompt="Negocio: "+nombre+"\n"+body.prompt;opts=Object.assign({},opts,{body:JSON.stringify(body)});}}catch(x){}
+  }
+  return _origFetch.call(this,url,opts);
+};
+document.addEventListener("click",function(e){
+  var btn=e.target.closest("#generateBtn");
+  if(!btn)return;
+  var ni=document.getElementById("negocioNombre");
+  if(ni&&ni.value.trim())window._negocioNombre=ni.value.trim();
+});
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){injectStepDots();applySkeleton();});}
+else{injectStepDots();applySkeleton();}
+})();
+</script></body>
   </html>
