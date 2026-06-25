@@ -400,6 +400,15 @@ body{padding-top:56px!important}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" type="font/woff2" crossorigin>
+
+<!-- Google Analytics GA4 — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script id="norden-ga4-init">
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag("js",new Date());
+gtag("config","G-XXXXXXXXXX",{page_title:"Atajo Creativo — Sistema de Ventas WA",page_location:window.location.href});
+</script>
 </head>
 <body>
 <nav id="main-nav">
@@ -1560,5 +1569,35 @@ document.addEventListener("input",function(e){if(e.target&&draftFields.indexOf(e
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){injectSuccessScreen();loadDraft();});}
 else{injectSuccessScreen();loadDraft();}
 })();
-</script></body>
+</script>
+<script id="norden-ga4-events">
+(function(){
+function gev(name,params){if(typeof gtag!=="undefined")gtag("event",name,params||{});}
+document.addEventListener("click",function(e){
+  var btn=e.target.closest(".rubro-selector-btn");
+  if(btn)gev("rubro_selected",{rubro:btn.textContent.trim()});
+  if(e.target.closest(".btn-main"))gev("cta_click",{label:(e.target.textContent||"").trim().slice(0,30)});
+  if(e.target.closest(".copy-btn"))gev("modulo_copiado",{});
+  if(e.target.closest(".copy-all-btn"))gev("sistema_copiado",{});
+  if(e.target.closest("#wa-share-btn"))gev("wa_shared",{});
+  if(e.target.closest(".coach-fab"))gev("coach_opened",{});
+  if(e.target.closest("#generateBtn"))gev("sistema_generado",{rubro:window._selectedRubro||"desconocido"});
+  if(e.target.closest(".btn-do-rewrite"))gev("modulo_reescrito",{});
+  if(e.target.closest(".pdf-btn"))gev("exportar_pdf",{});
+  if(e.target.closest(".download-all-btn"))gev("exportar_txt",{});
+  if(e.target.closest(".pricing-btn"))gev("pricing_click",{plan:(e.target.textContent||"").trim().slice(0,20)});
+  var r=e.target.closest(".rubro-selector-btn");if(r)window._selectedRubro=r.textContent.trim();
+});
+var scrollMarks={25:false,50:false,75:false,100:false};
+window.addEventListener("scroll",function(){
+  var h=document.body.scrollHeight-window.innerHeight;
+  if(h<=0)return;
+  var pct=Math.round((window.scrollY/h)*100);
+  [25,50,75,100].forEach(function(m){if(pct>=m&&!scrollMarks[m]){scrollMarks[m]=true;gev("scroll_depth",{percent:m});}});
+},{passive:true});
+var _t0=Date.now();
+window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Math.round((Date.now()-_t0)/1000)});});
+})();
+</script>
+</body>
   </html>
