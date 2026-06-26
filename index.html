@@ -537,6 +537,89 @@ body.light-mode .modulo-content{background:#fafaf8;color:#333}
   .rewrite-panel{padding:12px 16px}
   .module-actions{padding:10px 16px 14px}
 }
+
+/* === FINAL COMPLETE FIX: remaining missing classes + reinforcement === */
+
+/* Last system banner buttons */
+.btn-view-last,.btn-clear-last{background:none;border:1px solid var(--border);color:var(--gray);font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;cursor:pointer;transition:var(--transition);letter-spacing:0.5px;text-transform:uppercase}
+.btn-view-last{border-color:var(--border-strong);color:var(--green)}
+.btn-view-last:hover{background:var(--green-glow2)}
+.btn-clear-last:hover{border-color:var(--border-strong);color:var(--light)}
+.last-system-info{font-size:13px;color:var(--light);display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+
+/* Nav mobile */
+.nav-mobile-link{color:var(--light);font-size:15px;font-weight:500;text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);display:block;transition:var(--transition)}
+.nav-mobile-link:hover{color:var(--white)}
+.nav-mobile-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--green);color:#000!important;font-weight:700;font-size:13px;padding:14px;border-radius:10px;text-decoration:none;margin-top:8px;width:100%;text-align:center;letter-spacing:2px;text-transform:uppercase;transition:var(--transition)}
+.nav-mobile-cta:hover{background:var(--green2)}
+
+/* Hero left (explicit) */
+.hero-left{display:flex;flex-direction:column;justify-content:center}
+
+/* Coach header text */
+.coach-header-text{font-size:11px;color:var(--green);letter-spacing:1px;text-transform:uppercase;font-weight:600}
+
+/* Pricing subtitle */
+.pricing-subtitle{color:var(--light);font-size:14px;margin-bottom:32px;line-height:1.6}
+
+/* Privacy modal */
+.privacy-box{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:3000;display:none;align-items:center;justify-content:center;padding:20px}
+.privacy-box.open,.privacy-box[style*="block"]{display:flex}
+.privacy-box>div{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;position:relative}
+.privacy-close{position:absolute;top:16px;right:16px;background:var(--card2);border:1px solid var(--border);color:var(--gray);font-size:18px;cursor:pointer;padding:6px 10px;border-radius:8px;line-height:1;transition:var(--transition)}
+.privacy-close:hover{color:var(--white);border-color:var(--border-strong)}
+.privacy-link{color:var(--green);text-decoration:underline;cursor:pointer;font-size:13px;transition:var(--transition)}
+.privacy-link:hover{opacity:0.8}
+
+/* Print */
+@media print{
+  .print-header{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:2px solid #000;margin-bottom:24px}
+  .print-brand{font-weight:700;font-size:18px;letter-spacing:-0.5px}
+  nav,#main-nav,.coach-fab,.coach-panel,.last-system-banner,.results-actions{display:none!important}
+  .results-section{padding:0!important;display:block!important}
+  .module-card{break-inside:avoid;margin-bottom:16px}
+}
+.print-header{display:none}
+.print-brand{display:none}
+
+/* === STRONG OVERRIDES: ensure correct display on all devices === */
+
+/* Force module card to be display:block always */
+.module-card{display:block!important}
+.module-card .module-content{display:none}
+.module-card.open .module-content{display:block!important}
+
+/* Force form-section full-width layout on desktop */
+.form-section{max-width:700px!important;width:100%;margin:0 auto}
+
+/* Force stats to grid */
+#_stats .stats-section,
+#_stats>div{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto;padding:40px 48px}
+
+/* Force how-steps to 3 cols */
+#_howItWorks .how-steps,
+.how-section .how-steps{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:24px}
+
+/* Force testimonials grid */
+.testimonials-section .testimonials-grid,
+#_socialProof .testimonials-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:24px}
+
+/* Force pricing grid */
+.pricing-section .pricing-grid,
+#_pricing .pricing-grid{display:grid!important;grid-template-columns:repeat(2,1fr)!important;gap:24px;max-width:860px;margin:0 auto}
+
+/* Responsive overrides */
+@media(max-width:1024px){
+  #_stats .stats-section,#_stats>div{grid-template-columns:repeat(2,1fr)!important}
+  #_howItWorks .how-steps,.how-section .how-steps{grid-template-columns:1fr!important}
+  .testimonials-section .testimonials-grid,#_socialProof .testimonials-grid{grid-template-columns:1fr!important}
+  .pricing-section .pricing-grid,#_pricing .pricing-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:768px){
+  #_stats .stats-section,#_stats>div{grid-template-columns:repeat(2,1fr)!important;padding:24px 20px!important;gap:12px!important}
+  .form-section{max-width:100%!important;padding:72px 20px 60px!important}
+  .checkbox-group{grid-template-columns:1fr!important}
+}
 </style>
 <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.history-badge{display:inline-block;background:#c8f135;color:#111;font-size:9px;font-weight:700;border-radius:50%;width:14px;height:14px;line-height:14px;text-align:center;margin-left:3px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-char-bar{height:2px;border-radius:2px;margin-top:6px;background:#c8f135}.char-bar-wrap{background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;margin:6px 0 2px 0}.char-label-wrap{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.edit-inline-btn{background:transparent;border:1px solid rgba(200,241,53,0.3);color:rgba(200,241,53,0.7);font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;font-family:inherit;font-weight:600}.edit-inline-btn.editing{background:rgba(200,241,53,0.1);border-color:#c8f135;color:#c8f135}.module-content-inner[contenteditable="true"]{outline:1px solid rgba(200,241,53,0.3);border-radius:4px;padding:8px;cursor:text}.edit-hint{font-size:10px;color:rgba(200,241,53,0.5);text-align:right;margin-top:4px;display:none}.edit-hint.visible{display:block}.save-inline-btn{background:#c8f135;border:none;color:#111;font-size:10px;padding:4px 10px;border-radius:4px;cursor:pointer;font-weight:700;display:none;margin-left:4px}.save-inline-btn.visible{display:inline-block}.norden-metrics-bar{display:flex;gap:12px;padding:12px 0 16px 0;flex-wrap:wrap}.norden-metric-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:8px 14px;font-size:11px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:6px}.norden-metric-chip strong{color:#c8f135;font-size:15px;font-weight:800}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-mejoras-css">.history-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);font-size:11px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit;margin-left:4px}.norden-char-indicator{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;display:inline-block;margin-left:6px}.char-ok{background:rgba(200,241,53,0.15);color:#c8f135}.char-warn{background:rgba(255,193,7,0.15);color:#ffc107}.char-long{background:rgba(255,107,107,0.15);color:#ff6b6b}.norden-gen-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}.norden-gen-card{background:#161616;border:1px solid rgba(200,241,53,0.25);border-radius:16px;padding:40px 48px;text-align:center;max-width:420px;width:90%}.norden-gen-icon{font-size:42px;margin-bottom:16px;animation:np 1.5s infinite}@keyframes np{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}.norden-gen-title{font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;text-transform:uppercase}.norden-gen-msg{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;min-height:20px}.norden-gen-progress-wrap{background:rgba(255,255,255,0.08);border-radius:20px;height:6px;overflow:hidden;margin-bottom:12px}.norden-gen-progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#c8f135,#8bc34a);transition:width .5s ease;width:0%}.norden-gen-steps{font-size:11px;color:rgba(255,255,255,0.3)}.modules-grid.has-focus .module-card:not(.open){opacity:.45;filter:brightness(.7)}.modules-grid.has-focus .module-card.open{opacity:1;filter:none}.module-card:not(.open) .mc-status:not(.done){animation:pp 2.5s ease-in-out infinite}@keyframes pp{0%,100%{opacity:.6}50%{opacity:1}}.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:rgba(200,241,53,0.5)!important;box-shadow:0 0 0 3px rgba(200,241,53,0.08)!important;outline:none!important}.wa-input-dark.input-error{border-color:#ff6b6b!important}.wa-input-dark.input-ok{border-color:#c8f135!important}</style> <style id="norden-b2-css">
 :root{--lm-bg:#f8f8f6;--lm-surface:#ffffff;--lm-card:#ffffff;--lm-card-hover:#f4f4f2;--lm-text:#0d0d0d;--lm-text-secondary:#4a4a4a;--lm-text-muted:#888888;--lm-border:#e4e4e0;--lm-border-strong:#c8c8c4;--lm-green:#4a8c00;--lm-green-bg:#f0f7e0;--lm-shadow:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);--lm-shadow-lg:0 8px 32px rgba(0,0,0,.12);--transition-mode:0.25s ease}
