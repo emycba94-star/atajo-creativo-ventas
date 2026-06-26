@@ -1,7 +1,7 @@
 // api/claude.js — Vercel Serverless Function
 // Compatible con Vercel (convierte desde netlify/functions/claude.js)
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
