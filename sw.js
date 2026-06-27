@@ -1,7 +1,8 @@
+// Cache version: 2026-06-27T04:40:14.925Z - FORCE INVALIDATE
 // Atajo Creativo — Service Worker v1.0
 // Cache-first strategy for static assets, network-first for API
 
-const CACHE_NAME = 'atajo-creativo-v1';
+const CACHE_NAME = 'atajo-creativo-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
