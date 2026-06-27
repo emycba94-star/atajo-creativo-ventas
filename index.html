@@ -2033,12 +2033,11 @@ body { padding-top: 64px !important; }
 }
 /* ===== END CRITICAL NAV FIX ===== */
 /* HERO FORCE VISIBLE - beats any inline style via JS specificity trick */
-html body section.hero:not(.hidden),
-html body #hero:not(.hidden),
-section[id="hero"] {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+section.hero:not([style*="display: none"]):not([style*="display:none"]),
+html body #hero:not([style*="display: none"]):not([style*="display:none"]),
+section[id="hero"]:not([style*="display: none"]):not([style*="display:none"]) {
+  display: flex;
+  visibility: visible;
 }
 /* ===== COMPREHENSIVE FIXES & PREMIUM UX v2.0 ===== */
 
