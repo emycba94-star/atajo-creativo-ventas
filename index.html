@@ -1960,6 +1960,15 @@ else{injectStepDots();applySkeleton();}
 .norden-success-sub{color:#888;font-size:15px;max-width:440px;margin-bottom:32px;}
 .norden-success-btn{background:var(--green);color:#000;border:none;border-radius:8px;padding:14px 32px;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.3px;text-transform:uppercase;}
 
+
+/* HERO FORCE VISIBLE - beats any inline style via JS specificity trick */
+html body section.hero:not(.hidden),
+html body #hero:not(.hidden),
+section[id="hero"] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 /* ===== COMPREHENSIVE FIXES & PREMIUM UX v2.0 ===== */
 
 /* HERO SECTION - must be visible */
@@ -3009,7 +3018,55 @@ window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Ma
   }
 
   /* ---- RUN ALL FIXES ---- */
-  function runFixes() {
+  
+  /* ---- HERO DISPLAY FIX ---- */
+  function fixHero() {
+    // Remove inline display:none set by checkLastSystem() or other JS
+    var hero = document.getElementById('hero') || document.querySelector('.hero');
+    if (hero) {
+      if (hero.style.display === 'none') {
+        hero.style.removeProperty('display');
+      }
+    }
+    // Fix nav-mobile-menu (should be hidden by default unless open)
+    var mobileMenu = document.getElementById('navMobileMenu');
+    if (mobileMenu && !mobileMenu.classList.contains('open')) {
+      mobileMenu.style.display = 'none';
+    }
+  }
+
+
+  /* ---- PATCH startForm / startOver to properly manage hero ---- */
+  function patchSections() {
+    // Patch startForm: hide hero with class, show form
+    var _origSF = window.startForm;
+    window.startForm = function() {
+      var hero = document.getElementById('hero') || document.querySelector('.hero');
+      var form = document.getElementById('formSection');
+      if (hero) { hero.style.display = 'none'; }
+      if (form) { form.style.display = 'block'; form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (_origSF && _origSF !== window.startForm) {
+        try { _origSF.apply(this, arguments); } catch(e) {}
+      }
+    };
+    // Patch startOver: show hero, hide form and results
+    var _origSO = window.startOver;
+    window.startOver = function() {
+      var hero = document.getElementById('hero') || document.querySelector('.hero');
+      var form = document.getElementById('formSection');
+      var results = document.getElementById('resultsSection');
+      if (hero) { hero.style.display = ''; }
+      if (form) { form.style.display = 'none'; }
+      if (results) { results.style.display = 'none'; }
+      if (_origSO && _origSO !== window.startOver) {
+        try { _origSO.apply(this, arguments); } catch(e) {}
+      }
+    };
+  }
+
+function runFixes() {
+    fixHero();
+    patchSections();
     initHamburger();
     initNavScroll();
     initActiveNav();
