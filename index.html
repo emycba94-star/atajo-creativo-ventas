@@ -2043,7 +2043,7 @@ section[id="hero"] {
 /* ===== COMPREHENSIVE FIXES & PREMIUM UX v2.0 ===== */
 
 /* HERO SECTION - must be visible */
-.hero, section.hero, #hero { display: block !important; }
+.hero, section.hero, #hero { display: flex !important; min-height: 100vh; align-items: center; }
 
 /* HERO LAYOUT - premium desktop and mobile */
 .hero { 
@@ -3172,6 +3172,31 @@ function runFixes() {
     });
   });
   mutObs.observe(document.body, { childList: true, subtree: true });
+
+    // ===== ADDITIONAL FIX: Ensure coach starts CLOSED =====
+  const coachPanel = document.getElementById('coachPanel');
+  if (coachPanel && coachPanel.classList.contains('open')) {
+    // Only close if no active conversation (first page load)
+    const hasHistory = coachPanel.querySelectorAll('.coach-message, .user-message').length > 1;
+    if (!hasHistory) {
+      coachPanel.classList.remove('open');
+    }
+  }
+
+  // ===== ADDITIONAL FIX: Ensure hero display is correct =====
+  const heroEl = document.getElementById('hero');
+  if (heroEl && heroEl.style.display === 'none') {
+    // Only show if not in form mode
+    const formSection = document.getElementById('formSection');
+    if (!formSection || formSection.style.display === 'none' || !formSection.style.display) {
+      heroEl.style.display = '';
+    }
+  }
+
+  // ===== ADDITIONAL FIX: window.generarSistema alias =====
+  if (typeof window.generateAll === 'function' && typeof window.generarSistema === 'undefined') {
+    window.generarSistema = window.generateAll;
+  }
 
   console.log('[NORDEN FIX v3.0] ✅ All fixes applied');
 })();
