@@ -1,3 +1,4 @@
+// Build: 2026-06-27T03:11:23.599Z
 // api/claude.js — Vercel Serverless Function
 module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
