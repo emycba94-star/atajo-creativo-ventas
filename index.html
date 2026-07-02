@@ -2870,8 +2870,7 @@ window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Ma
       botDiv.innerHTML = reply
         .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
         .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-        .replace(/
-/g, '<br>');
+        .replace(/\n/g, '<br>');
       msgs.appendChild(botDiv);
       window._coachHistory.push({ role: 'assistant', content: reply });
     })
@@ -3053,7 +3052,7 @@ window.addEventListener("beforeunload",function(){gev("time_on_page",{seconds:Ma
   /* ---- 14. OPT CARD SELECT FIX ---- */
   if (typeof window.selectOpt !== 'function') {
     window.selectOpt = function(group, val, el) {
-      document.querySelectorAll('[onclick*="selectOpt('' + group + ''"]').forEach(function(card) {
+      document.querySelectorAll('[onclick*="selectOpt(\'' + group + '\'"]').forEach(function(card) {
         card.classList.remove('selected', 'active');
       });
       if (el) { el.classList.add('selected'); el.classList.add('active'); }
